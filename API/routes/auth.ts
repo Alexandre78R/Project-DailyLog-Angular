@@ -6,7 +6,7 @@ import { data, saveDb, generateId, User } from "../utils/db";
 const router = Router();
 const SECRET = process.env.JWT_SECRET || "dev-secret";
 
-router.post("/auth/register", (req: Request, res: Response) => {
+router.post("/register", (req: Request, res: Response) => {
 
   if (!req.body || typeof req.body !== "object") {
     res.status(400).json({ message: "Aucune donnée reçue. Assurez-vous d’envoyer un JSON valide." });
@@ -42,7 +42,7 @@ router.post("/auth/register", (req: Request, res: Response) => {
   res.status(201).json({ token, userId: newUser.id });
 });
 
-router.post("/auth/login", (req: Request, res: Response) => {
+router.post("/login", (req: Request, res: Response) => {
 
   console.log("req.body", req.body)
 
