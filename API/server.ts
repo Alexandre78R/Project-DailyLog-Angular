@@ -17,10 +17,10 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/auth", authRoutes);
-app.use("/entries", entriesRoutes);
-app.use("/users", usersRoutes);
-app.use("/mood_stats", moodStatsRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/entries", entriesRoutes);
+app.use("/api/users", usersRoutes);
+app.use("/api/mood_stats", moodStatsRoutes);
 
 app.get("/", (_req, res) => {
   res.send("📘 Bienvenue sur l’API DailyLog !");
