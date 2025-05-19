@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "alexandre@example.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$O0B7GJG7SXzaabz/pnlzng$ckr2otDAoojlqzHAGEZRjFmqE/oRDS1HnluaYpdz3Ms",
+      "name": "Alexandre",
+      "createdAt": "2025-05-19T10:44:58.331Z"
+    },
+    {
+      "id": 2,
+      "email": "toto",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$I7eh6UP3IWmcQJSHUq6Uhg$KkZ/5zSqqejWXG4Nm5fK6h10MqETP7cPyABcuCCmB7E",
+      "name": "toto",
+      "createdAt": "2025-05-19T10:44:58.331Z"
+    },
+    {
+      "id": 3,
+      "email": "tutu",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$gRUudLNgWZvmhTFlqpwseg$dQypDthcM6Cz7O7BrL5NY9jZv0e38aS7ch4JyzCBXlI",
+      "name": "tutu",
+      "createdAt": "2025-05-19T10:44:58.332Z"
+    },
+    {
+      "id": 4,
+      "email": "admin",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$gxtG03DKASrfPuwtGxQoLQ$LphFjf1B/RCaPLYoVL8+1cXm8RFUD74d0gQ8marPU+k",
+      "name": "admin",
+      "createdAt": "2025-05-19T10:44:58.326Z"
+    }
+  ],
+  "entries": [
+    {
+      "id": 101,
+      "userId": 1,
+      "date": "2025-05-12",
+      "title": "Une journée productive",
+      "content": "Aujourd’hui j’ai bien avancé sur mon projet Angular. J’ai terminé l’ajout d’une entrée avec humeur.",
+      "mood": "happy",
+      "createdAt": "2025-05-19T10:44:58.332Z"
+    },
+    {
+      "id": 102,
+      "userId": 1,
+      "date": "2025-05-12",
+      "title": "Fatigue et réflexion",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad",
+      "createdAt": "2025-05-19T10:44:58.332Z"
+    }
+  ],
+  "mood_stats": [
+    {
+      "userId": 1,
+      "month": "2025-05",
+      "totalEntries": 13,
+      "moods": {
+        "happy": 7,
+        "neutral": 3,
+        "sad": 3
+      }
+    }
+  ]
+}

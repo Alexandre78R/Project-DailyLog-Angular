@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const dbPath = path.join(__dirname, "../db.json");
+const dbPath = path.join(__dirname, "../data/db.json");
 
 export interface User {
   id: number;
