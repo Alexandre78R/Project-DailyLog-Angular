@@ -2,11 +2,14 @@
 import { Router, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { data, saveDb, generateId, User } from "../utils/db";
+import argon2 from "argon2";
 
 const router = Router();
 const SECRET = process.env.JWT_SECRET || "dev-secret";
 
-router.post("/register", (req: Request, res: Response) => {
+router.post("/register", async (req: Request, res: Response) => {
+
+  console.log("req.body", req.body)
 
   if (!req.body || typeof req.body !== "object") {
     res.status(400).json({ message: "Aucune donnée reçue. Assurez-vous d’envoyer un JSON valide." });
@@ -25,10 +28,12 @@ router.post("/register", (req: Request, res: Response) => {
     return;
   }
 
+  const hashedPassword = await argon2.hash(password);
+
   const newUser: User = {
     id: generateId(data.users),
     email,
-    password,
+    password: hashedPassword,
     name,
     createdAt: new Date().toISOString(),
   };
@@ -42,7 +47,7 @@ router.post("/register", (req: Request, res: Response) => {
   res.status(201).json({ token, userId: newUser.id });
 });
 
-router.post("/login", (req: Request, res: Response) => {
+router.post("/login", async (req: Request, res: Response) => {
 
   console.log("req.body", req.body)
 
@@ -58,9 +63,16 @@ router.post("/login", (req: Request, res: Response) => {
     return;
   }
 
-  const user = data.users.find((u) => u.email === email && u.password === password);
-
+  const user = data.users.find((u) => u.email === email);
+  
   if (!user) {
+    res.status(401).json({ message: "Identifiants invalides." });
+    return;
+  }
+
+  const passwordMatch = await argon2.verify(user.password, password);
+  
+  if (!passwordMatch) {
     res.status(401).json({ message: "Identifiants invalides." });
     return;
   }
