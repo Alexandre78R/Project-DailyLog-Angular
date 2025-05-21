@@ -2,31 +2,45 @@
   "users": [
     {
       "id": 1,
-      "email": "alexandre@example.com",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$O0B7GJG7SXzaabz/pnlzng$ckr2otDAoojlqzHAGEZRjFmqE/oRDS1HnluaYpdz3Ms",
+      "email": "alex",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$QUpHIArnfcxjf5liQIk/oA$KMLdXLY6m34ciGlWmg888luuEewNyz4o2NRdfVRk+JA",
       "name": "Alexandre",
-      "createdAt": "2025-05-19T10:44:58.331Z"
+      "createdAt": "2025-05-21T10:32:39.558Z"
     },
     {
       "id": 2,
-      "email": "toto",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$I7eh6UP3IWmcQJSHUq6Uhg$KkZ/5zSqqejWXG4Nm5fK6h10MqETP7cPyABcuCCmB7E",
-      "name": "toto",
-      "createdAt": "2025-05-19T10:44:58.331Z"
+      "email": "alex@alex.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$fuhy+H2wT4EmcehQU97D+A$EUqEVhOrSRf3hWOqtKScoA0kLBSAJidtzgdU4VgUycE",
+      "name": "Alexandre",
+      "createdAt": "2025-05-21T10:32:39.569Z"
     },
     {
       "id": 3,
-      "email": "tutu",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$gRUudLNgWZvmhTFlqpwseg$dQypDthcM6Cz7O7BrL5NY9jZv0e38aS7ch4JyzCBXlI",
-      "name": "tutu",
-      "createdAt": "2025-05-19T10:44:58.332Z"
+      "email": "toto",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$tZH4dlhE+Dp1pYRMSDGoTw$n5/lQonIvC8M3YoSDgwjIZeKtd8tVCoW6C/dzGctt1M",
+      "name": "toto",
+      "createdAt": "2025-05-21T10:32:39.566Z"
     },
     {
       "id": 4,
+      "email": "toto@toto.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$8lVyLW2fNOIeeGdW5pKwFw$NMkzHHfmte3Ex4GlLdJYAuC3kpQrl6xoLYKPCuC/IpA",
+      "name": "toto",
+      "createdAt": "2025-05-21T10:32:39.564Z"
+    },
+    {
+      "id": 5,
+      "email": "tutu",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$LWBLNpA1Wz5WhEauOhaWFg$qHpiuBlxE+jGkwEXC2BmDkagnZXe00jNwqCPJYqs4cg",
+      "name": "tutu",
+      "createdAt": "2025-05-21T10:32:39.618Z"
+    },
+    {
+      "id": 6,
       "email": "admin",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$gxtG03DKASrfPuwtGxQoLQ$LphFjf1B/RCaPLYoVL8+1cXm8RFUD74d0gQ8marPU+k",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$xvlj4i6/OI4qiOFPT1VvGg$tdTRhrYiFxojKY55RvfmigS34tJlbWfHdK6U5C5ES74",
       "name": "admin",
-      "createdAt": "2025-05-19T10:44:58.326Z"
+      "createdAt": "2025-05-21T10:32:39.615Z"
     }
   ],
   "entries": [
@@ -37,7 +51,7 @@
       "title": "Une journée productive",
       "content": "Aujourd’hui j’ai bien avancé sur mon projet Angular. J’ai terminé l’ajout d’une entrée avec humeur.",
       "mood": "happy",
-      "createdAt": "2025-05-19T10:44:58.332Z"
+      "createdAt": "2025-05-21T10:32:39.618Z"
     },
     {
       "id": 102,
@@ -46,7 +60,7 @@
       "title": "Fatigue et réflexion",
       "content": "J’ai eu un coup de mou...",
       "mood": "sad",
-      "createdAt": "2025-05-19T10:44:58.332Z"
+      "createdAt": "2025-05-21T10:32:39.618Z"
     }
   ],
   "mood_stats": [

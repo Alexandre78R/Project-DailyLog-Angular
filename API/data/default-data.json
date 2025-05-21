@@ -1,12 +1,22 @@
 {
   "users": [
     {
-      "email": "alexandre@example.com",
-      "password": "hashed-password",
+      "email": "alex",
+      "password": "alex",
+      "name": "Alexandre"
+    },
+    {
+      "email": "alex@alex.com",
+      "password": "alex",
       "name": "Alexandre"
     },
     {
       "email": "toto",
+      "password": "toto",
+      "name": "toto"
+    },
+    {
+      "email": "toto@toto.com",
       "password": "toto",
       "name": "toto"
     },
