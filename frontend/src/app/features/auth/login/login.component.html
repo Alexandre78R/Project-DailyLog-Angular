@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div class="login-container">
+  <h2>Connexion</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        class="form-control"
+        [class.invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+      />
+      <div class="error" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+        <small *ngIf="form.get('email')?.errors?.['required']">Email requis</small>
+        <small *ngIf="form.get('email')?.errors?.['email']">Email invalide</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        class="form-control"
+        [class.invalid]="form.get('password')?.invalid && form.get('password')?.touched"
+      />
+      <div class="error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+        <small>Mot de passe requis</small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Se connecter</button>
+  </form>
+</div>
