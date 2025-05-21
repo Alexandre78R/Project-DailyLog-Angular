@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-journal-entry',
@@ -7,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './journal-entry.component.scss'
 })
 export class JournalEntryComponent {
+  constructor(private auth: AuthService, private router: Router) {}
 
+    ngOnInit() {
+      console.log("this.auth.isLoggedIn()",this.auth.isLoggedIn())
+  }
 }

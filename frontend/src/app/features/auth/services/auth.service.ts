@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -49,6 +50,22 @@ export class AuthService {
 
   isAuthenticated() {
     return !!this.token();
+  }
+
+  isLoggedIn(): boolean {
+    if (!this.isBrowser()) return false;
+
+    const token = localStorage.getItem('token');
+    if (!token) return false;
+
+    try {
+      const decoded: any = jwtDecode(token);
+      const exp = decoded.exp;
+      const now = Math.floor(Date.now() / 1000);
+      return exp && exp > now;
+    } catch (e) {
+      return false;
+    }
   }
 
   getToken(): string | null {

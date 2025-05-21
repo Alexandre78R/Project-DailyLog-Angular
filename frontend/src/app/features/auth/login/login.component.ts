@@ -20,13 +20,13 @@ export class LoginComponent {
     password: ['', Validators.required]
   });
 
-submit() {
-  if (this.form.invalid) return;
+  submit() {
+    if (this.form.invalid) return;
 
-  const { email, password } = this.form.getRawValue() as { email: string; password: string };
+    const { email, password } = this.form.getRawValue() as { email: string; password: string };
 
-  this.auth.login({ email, password }).subscribe(() => {
-    this.router.navigateByUrl('/');
-  });
-}
+    this.auth.login({ email, password }).subscribe(() => {
+      this.router.navigateByUrl('/');
+    });
+  }
 }
