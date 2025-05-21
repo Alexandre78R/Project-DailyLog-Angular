@@ -8,10 +8,16 @@ import { AuthService } from '../../auth/services/auth.service';
   templateUrl: './journal-entry.component.html',
   styleUrl: './journal-entry.component.scss'
 })
+
 export class JournalEntryComponent {
   constructor(private auth: AuthService, private router: Router) {}
 
-    ngOnInit() {
-      console.log("this.auth.isLoggedIn()",this.auth.isLoggedIn())
+  ngOnInit() {
+    console.log("this.auth.isLoggedIn()",this.auth.isLoggedIn())
+    // if (!this.auth.isLoggedIn()) {
+    //   this.router.navigate(['/login']);
+    //   return false;
+    // }
+    // return true;
   }
 }
