@@ -38,13 +38,17 @@ interface Db {
   mood_stats: MoodStats[];
 }
 
-export let data: Db = JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+// ✅ Toujours charger dynamiquement la dernière version
+export function loadDb(): Db {
+  return JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+}
 
-export function saveDb() {
+// ✅ Sauvegarde explicite (à utiliser avec `loadDb`)
+export function saveDb(data: Db) {
   fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
 }
 
-// Génère un nouvel id unique pour un tableau d'éléments avec propriété id
+// ✅ Génère un nouvel ID unique
 export function generateId<T extends { id: number }>(array: T[]): number {
   return array.length ? Math.max(...array.map((item) => item.id)) + 1 : 1;
 }

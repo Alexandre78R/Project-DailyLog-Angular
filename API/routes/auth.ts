@@ -1,15 +1,13 @@
-// routes/auth.ts
 import { Router, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { data, saveDb, generateId, User } from "../utils/db";
+import { loadDb, saveDb, generateId, User } from "../utils/db";
 import argon2 from "argon2";
 
 const router = Router();
 const SECRET = process.env.JWT_SECRET || "dev-secret";
 
 router.post("/register", async (req: Request, res: Response) => {
-
-  console.log("req.body", req.body)
+  console.log("req.body", req.body);
 
   if (!req.body || typeof req.body !== "object") {
     res.status(400).json({ message: "Aucune donnée reçue. Assurez-vous d’envoyer un JSON valide." });
@@ -23,7 +21,9 @@ router.post("/register", async (req: Request, res: Response) => {
     return;
   }
 
-  if (data.users.some((u) => u.email === email)) {
+  const db = loadDb();
+
+  if (db.users.some((u) => u.email === email)) {
     res.status(409).json({ message: "Email déjà utilisé." });
     return;
   }
@@ -31,15 +31,15 @@ router.post("/register", async (req: Request, res: Response) => {
   const hashedPassword = await argon2.hash(password);
 
   const newUser: User = {
-    id: generateId(data.users),
+    id: generateId(db.users),
     email,
     password: hashedPassword,
     name,
     createdAt: new Date().toISOString(),
   };
 
-  data.users.push(newUser);
-  saveDb();
+  db.users.push(newUser);
+  saveDb(db);
 
   const payload = { id: newUser.id, email: newUser.email };
   const token = jwt.sign(payload, SECRET, { expiresIn: "7d" });
@@ -48,8 +48,7 @@ router.post("/register", async (req: Request, res: Response) => {
 });
 
 router.post("/login", async (req: Request, res: Response) => {
-
-  console.log("req.body", req.body)
+  console.log("req.body", req.body);
 
   if (!req.body || typeof req.body !== "object") {
     res.status(400).json({ message: "Aucune donnée reçue. Assurez-vous d’envoyer un JSON valide." });
@@ -63,15 +62,16 @@ router.post("/login", async (req: Request, res: Response) => {
     return;
   }
 
-  const user = data.users.find((u) => u.email === email);
-  
+  const db = loadDb();
+  const user = db.users.find((u) => u.email === email);
+
   if (!user) {
     res.status(401).json({ message: "Identifiants invalides." });
     return;
   }
 
   const passwordMatch = await argon2.verify(user.password, password);
-  
+
   if (!passwordMatch) {
     res.status(401).json({ message: "Identifiants invalides." });
     return;

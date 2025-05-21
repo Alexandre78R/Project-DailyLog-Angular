@@ -21,6 +21,21 @@
       "name": "toto"
     },
     {
+      "email": "tata@tata.com",
+      "password": "tata",
+      "name": "tata"
+    },
+    {
+      "email": "tutu@tutu.com",
+      "password": "tutu",
+      "name": "tutu"
+    },
+    {
+      "email": "titi@titi.com",
+      "password": "titi",
+      "name": "titi"
+    },
+    {
       "email": "tutu",
       "password": "tutu",
       "name": "tutu"

@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { authenticateToken, AuthRequest } from "../middleware/authenticate";
-import { data, Entry, generateId, saveDb } from "../utils/db";
+import { Entry, generateId, loadDb, saveDb } from "../utils/db";
 
 const router = Router();
 
@@ -15,12 +15,15 @@ router.post("/", authenticateToken, (req: AuthRequest, res: Response, next: Next
   }
 
   if (!date || !title || !content || !mood) {
-      res.status(400).json({ message: "Champs requis manquants." });
-      return;
+    res.status(400).json({ message: "Champs requis manquants." });
+    return;
   }
 
+  // Charge la base à jour
+  const db = loadDb();
+
   const newEntry: Entry = {
-    id: generateId(data.entries),
+    id: generateId(db.entries),
     userId,
     date,
     title,
@@ -29,22 +32,26 @@ router.post("/", authenticateToken, (req: AuthRequest, res: Response, next: Next
     createdAt: new Date().toISOString(),
   };
 
-  data.entries.push(newEntry);
-  saveDb();
+  db.entries.push(newEntry);
+
+  // Sauvegarde la base mise à jour
+  saveDb(db);
 
   res.status(201).json({ message: "Entrée ajoutée.", entry: newEntry });
 });
 
 // GET /entries - liste des entrées avec option limite
 router.get("/", (req: Request, res: Response) => {
+  const db = loadDb();
   const limit = req.query.limit ? parseInt(req.query.limit as string, 10) : undefined;
-  const entries = limit ? data.entries.slice(0, limit) : data.entries;
+  const entries = limit ? db.entries.slice(0, limit) : db.entries;
   res.json(entries);
 });
 
 // GET /entries/:id - récupérer une entrée par son id
 router.get("/:id", (req: Request, res: Response) => {
-  const entry = data.entries.find((e) => e.id === Number(req.params.id));
+  const db = loadDb();
+  const entry = db.entries.find((e) => e.id === Number(req.params.id));
   entry ? res.json(entry) : res.sendStatus(404);
 });
 
