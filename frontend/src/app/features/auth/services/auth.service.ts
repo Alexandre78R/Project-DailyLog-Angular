@@ -4,6 +4,7 @@ import { tap } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -12,13 +13,18 @@ export class AuthService {
   private apiUrl = 'http://localhost:3001/api/auth';
 
   token = signal<string | null>(null);
+  private loggedIn$: BehaviorSubject<boolean>;
 
   constructor() {
     if (this.isBrowser()) {
+      this.loggedIn$ = new BehaviorSubject<boolean>(this.hasToken());
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
         this.token.set(storedToken);
       }
+    } else {
+      // côté serveur, on ne peut pas accéder à localStorage
+      this.loggedIn$ = new BehaviorSubject<boolean>(false);
     }
   }
 
@@ -26,11 +32,21 @@ export class AuthService {
     return isPlatformBrowser(this.platformId);
   }
 
+  private hasToken(): boolean {
+    if (!this.isBrowser()) return false;
+    return !!localStorage.getItem('token');
+  }
+
+  isLoggedIn$() {
+    return this.loggedIn$.asObservable();
+  }
+
   login(data: { email: string; password: string }) {
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, data).pipe(
       tap(res => {
         if (this.isBrowser()) {
           localStorage.setItem('token', res.token);
+          this.loggedIn$.next(true);
         }
         this.token.set(res.token);
       })
@@ -45,6 +61,7 @@ export class AuthService {
     if (this.isBrowser()) {
       localStorage.removeItem('token');
     }
+    this.loggedIn$.next(false);
     this.token.set(null);
   }
 

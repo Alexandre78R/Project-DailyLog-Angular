@@ -15,8 +15,16 @@ export class LogoutButtonComponent {
   private auth = inject(AuthService);
   private router = inject(Router);
 
+  isLoggedIn = false;
+
+  constructor() {
+    this.auth.isLoggedIn$().subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+  }
+
   logout() {
     this.auth.logout();
-    this.router.navigateByUrl('/login');
+    this.router.navigate(['/login']);
   }
 }
