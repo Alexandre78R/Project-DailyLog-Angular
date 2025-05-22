@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
@@ -10,15 +10,25 @@ import { Router } from '@angular/router';
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   private fb = inject(FormBuilder);
   private auth = inject(AuthService);
   private router = inject(Router);
+    instanceId = Math.random();
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   });
+
+  constructor() {
+    console.log('LoginComponent constructor called');
+        console.log('LoginComponent constructor called',  Math.random());
+  }
+
+  ngOnInit() {
+    console.log('LoginComponent ngOnInit called');
+  }
 
   submit() {
     if (this.form.invalid) return;

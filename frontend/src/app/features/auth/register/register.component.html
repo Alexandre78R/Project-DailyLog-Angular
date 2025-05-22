@@ -1,1 +1,17 @@
-<p>register works!</p>
+<h2>Créer un compte</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>
+    Nom :
+    <input type="text" formControlName="name" />
+  </label>
+  <label>
+    Email :
+    <input type="email" formControlName="email" />
+  </label>
+  <label>
+    Mot de passe :
+    <input type="password" formControlName="password" />
+  </label>
+  <button type="submit" [disabled]="form.invalid">S'inscrire</button>
+</form>
