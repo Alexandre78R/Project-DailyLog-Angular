@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-entry-list',
   imports: [],
   templateUrl: './entry-list.component.html',
-  styleUrl: './entry-list.component.scss'
+  styleUrl: './entry-list.component.css'
 })
 export class EntryListComponent {
 

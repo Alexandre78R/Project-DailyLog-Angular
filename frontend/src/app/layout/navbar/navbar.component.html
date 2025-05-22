@@ -1,0 +1,15 @@
+<nav class="bg-gray-800 text-white px-6 py-3 flex justify-between items-center shadow-md">
+  <div class="text-xl font-bold">📝 DailyLog</div>
+
+  <div class="space-x-4">
+    <ng-container *ngIf="!isLoggedIn; else loggedIn">
+      <a routerLink="/login" class="hover:underline">Connexion</a>
+      <a routerLink="/register" class="hover:underline">Inscription</a>
+    </ng-container>
+
+    <ng-template #loggedIn>
+      <span class="font-semibold">👤 {{ username }}</span>
+      <button (click)="logout()" class="bg-red-500 px-3 py-1 rounded hover:bg-red-600">Déconnexion</button>
+    </ng-template>
+  </div>
+</nav>

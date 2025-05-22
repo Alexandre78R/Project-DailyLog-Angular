@@ -62,6 +62,13 @@
       "password": "$argon2id$v=19$m=65536,t=3,p=4$YKfNsJKwzcep+xpE10trdg$zyJT4D3+UA9RozHEVKFgATyUaBKTTh4EQpc70WqCCWM",
       "name": "admin",
       "createdAt": "2025-05-21T21:45:36.699Z"
+    },
+    {
+      "id": 10,
+      "email": "rr@rr.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$RTmLUAI8M7H+VnDXNTFq4w$1h7zsL13L5N2cgX9muZlh3FtLNniYwngJP62o8qr8DQ",
+      "name": "tuttu",
+      "createdAt": "2025-05-22T00:12:03.387Z"
     }
   ],
   "entries": [

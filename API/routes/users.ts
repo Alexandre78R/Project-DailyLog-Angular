@@ -16,4 +16,12 @@ router.get("/:id", (req: Request, res: Response) => {
   user ? res.json(user) : res.sendStatus(404);
 });
 
+// GET /users/name/:id - récupérer le nom d'un utilisateur
+router.get("/name/:id", (req: Request, res: Response) => {
+  const db = loadDb();
+  const user = db.users.find((u) => u.id === Number(req.params.id));
+  console.log("user", user)
+  user ? res.json({ name : user.name}) : res.sendStatus(404);
+});
+
 export default router;

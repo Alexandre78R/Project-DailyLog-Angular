@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-mood-indicator',
   imports: [],
   templateUrl: './mood-indicator.component.html',
-  styleUrl: './mood-indicator.component.scss'
+  styleUrl: './mood-indicator.component.css'
 })
 export class MoodIndicatorComponent {
 

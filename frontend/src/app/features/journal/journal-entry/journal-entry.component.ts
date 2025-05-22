@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-journal-entry',
   imports: [LogoutButtonComponent, CommonModule],
   templateUrl: './journal-entry.component.html',
-  styleUrls: ['./journal-entry.component.scss']
+  styleUrls: ['./journal-entry.component.css']
 })
 export class JournalEntryComponent {
 
