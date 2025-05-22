@@ -66,7 +66,7 @@ export class AuthService {
   }
 
   login(data: { email: string; password: string }) {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/auth//login`, data).pipe(
+    return this.http.post<{ token: string }>(`${this.apiUrl}/auth/login`, data).pipe(
       tap(res => {
         if (this.isBrowser()) {
           localStorage.setItem('token', res.token);
@@ -83,7 +83,7 @@ export class AuthService {
   }
 
   register(data: { email: string; password: string; name: string }) {
-    return this.http.post(`${this.apiUrl}//auth/register`, data);
+    return this.http.post(`${this.apiUrl}/auth/register`, data);
   }
 
   logout() {
@@ -93,6 +93,10 @@ export class AuthService {
     this.loggedIn$.next(false);
     this.token.set(null);
     this._user.next(null);
+  }
+
+  setUser(user: User | null) {
+    this._user.next(user);
   }
 
   isAuthenticated() {
