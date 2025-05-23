@@ -8,10 +8,11 @@ describe('MoodIndicatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MoodIndicatorComponent]
-    })
-    .compileComponents();
+      imports: [MoodIndicatorComponent],
+    }).compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(MoodIndicatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

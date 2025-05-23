@@ -1,88 +1,31 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import cors from "cors";
-import fs from "fs";
-import path from "path";
+import dotenv from "dotenv";
 
-// Types
-interface User {
-  id: number;
-  email: string;
-  password: string;
-  name: string;
-  createdAt: string;
-}
+import authRoutes from "./routes/auth";
+import entriesRoutes from "./routes/entries";
+import usersRoutes from "./routes/users";
+import moodStatsRoutes from "./routes/moodStats";
 
-interface Entry {
-  id: number;
-  userId: number;
-  date: string;
-  title: string;
-  content: string;
-  mood: "happy" | "neutral" | "sad";
-  createdAt: string;
-}
+dotenv.config();
 
-interface MoodStats {
-  userId: number;
-  month: string;
-  totalEntries: number;
-  moods: {
-    happy: number;
-    neutral: number;
-    sad: number;
-  };
-}
-
-// Chargement du fichier JSON
-const dbPath = path.join(__dirname, "db.json");
-const rawData = fs.readFileSync(dbPath, "utf-8");
-const data: {
-  users: User[];
-  entries: Entry[];
-  mood_stats: MoodStats[];
-} = JSON.parse(rawData);
-
-// Initialisation
 const app = express();
 const port = 3001;
 
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (_req: Request, res: Response) => {
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/entries", entriesRoutes);
+app.use("/api/users", usersRoutes);
+app.use("/api/mood_stats", moodStatsRoutes);
+
+app.get("/", (_req, res) => {
   res.send("📘 Bienvenue sur l’API DailyLog !");
 });
 
-app.get("/users", (_req: Request, res: Response) => {
-  res.json(data.users);
-});
-
-app.get("/users/:id", (req: Request, res: Response) => {
-  const user = data.users.find((u) => u.id === Number(req.params.id));
-  user ? res.json(user) : res.sendStatus(404);
-});
-
-app.get("/entries", (req: Request, res: Response) => {
-  const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
-  const entries = limit ? data.entries.slice(0, limit) : data.entries;
-  res.json(entries);
-});
-
-app.get("/entries/:id", (req: Request, res: Response) => {
-  const entry = data.entries.find((e) => e.id === Number(req.params.id));
-  entry ? res.json(entry) : res.sendStatus(404);
-});
-
-app.get("/mood_stats", (_req: Request, res: Response) => {
-  res.json(data.mood_stats);
-});
-
-app.get("/mood_stats/:userId", (req: Request, res: Response) => {
-  const stats = data.mood_stats.find((s) => s.userId === Number(req.params.userId));
-  stats ? res.json(stats) : res.sendStatus(404);
-});
-
-
 app.listen(port, () => {
-  console.log(`✅ Serveur  démarré sur http://localhost:${port}`);
+  console.log(`✅ Serveur démarré sur http://localhost:${port}`);
 });
