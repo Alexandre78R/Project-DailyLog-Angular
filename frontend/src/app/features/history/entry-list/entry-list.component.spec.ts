@@ -8,10 +8,11 @@ describe('EntryListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EntryListComponent]
-    })
-    .compileComponents();
+      imports: [EntryListComponent],
+    }).compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(EntryListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -20,4 +21,5 @@ describe('EntryListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

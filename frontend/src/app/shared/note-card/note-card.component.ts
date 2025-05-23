@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-note-card',
   imports: [],
   templateUrl: './note-card.component.html',
-  styleUrl: './note-card.component.scss'
+  styleUrl: './note-card.component.css'
 })
 export class NoteCardComponent {
 

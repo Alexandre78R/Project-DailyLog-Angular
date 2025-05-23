@@ -1,0 +1,77 @@
+{
+  "users": [
+    {
+      "email": "alex",
+      "password": "alex",
+      "name": "Alexandre"
+    },
+    {
+      "email": "alex@alex.com",
+      "password": "alex",
+      "name": "Alexandre"
+    },
+    {
+      "email": "toto",
+      "password": "toto",
+      "name": "toto"
+    },
+    {
+      "email": "toto@toto.com",
+      "password": "toto",
+      "name": "toto"
+    },
+    {
+      "email": "tata@tata.com",
+      "password": "tata",
+      "name": "tata"
+    },
+    {
+      "email": "tutu@tutu.com",
+      "password": "tutu",
+      "name": "tutu"
+    },
+    {
+      "email": "titi@titi.com",
+      "password": "titi",
+      "name": "titi"
+    },
+    {
+      "email": "tutu",
+      "password": "tutu",
+      "name": "tutu"
+    },
+    {
+      "email": "admin",
+      "password": "admin",
+      "name": "admin"
+    }
+  ],
+  "entries": [
+    {
+      "userId": 1,
+      "date": "2025-05-12",
+      "title": "Une journée productive",
+      "content": "Aujourd’hui j’ai bien avancé sur mon projet Angular. J’ai terminé l’ajout d’une entrée avec humeur.",
+      "mood": "happy"
+    },
+    {
+      "userId": 1,
+      "date": "2025-05-12",
+      "title": "Fatigue et réflexion",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad"
+    }
+  ],
+  "mood_stats": [
+    {
+      "userId": 1,
+      "month": "2025-05",
+      "totalEntries": 13,
+      "moods": {
+        "happy": 7,
+        "neutral": 3,
+        "sad": 3
+      }
+    }
+  ]
+}
