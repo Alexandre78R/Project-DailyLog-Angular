@@ -16,12 +16,8 @@ export const routes: Routes = [
     loadComponent: () => import('./features/stats/stats-dashboard/stats-dashboard.component').then(m => m.StatsDashboardComponent),
   },
   {
-    path: 'login',
-    loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent),
-  },
-  {
-    path: 'register',
-    loadComponent: () => import('./features/auth/register/register.component').then(m => m.RegisterComponent),
+    path: '',
+    loadChildren: () => import('./features/auth/auth.modules').then(m => m.AuthRoutingModule)
   },
   {
     path: '',
