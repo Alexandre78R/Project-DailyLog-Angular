@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
+
   private fb = inject(FormBuilder);
   private auth = inject(AuthService);
   private router = inject(Router);
-    instanceId = Math.random();
+  instanceId = Math.random();
+  serverError: string | null = null;
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -35,8 +37,16 @@ export class LoginComponent implements OnInit {
 
     const { email, password } = this.form.getRawValue() as { email: string; password: string };
 
-    this.auth.login({ email, password }).subscribe(() => {
-      this.router.navigateByUrl('/');
+    this.serverError = null;
+
+    this.auth.login({ email, password }).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/');
+      },
+      error: (err) => {
+        console.log('Erreur côté client reçue:', err);
+        this.serverError = err.message || 'Une erreur inconnue est survenue.';
+      }
     });
   }
 }

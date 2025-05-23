@@ -39,6 +39,9 @@
       >
         Se connecter
       </button>
+      <div *ngIf="serverError" class="mb-4 text-red-600 text-sm font-medium">
+        {{ serverError }}
+      </div>
     </form>
   </div>
 </div>
