@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterComponent {
   form: FormGroup;
+  serverError: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -26,18 +27,16 @@ export class RegisterComponent {
   }
 
   onSubmit() {
+    this.serverError = null;
     if (this.form.invalid) return;
 
     const { name, email, password } = this.form.value;
 
-    this.auth.register({
-      name: name!,
-      email: email!,
-      password: password!,
-    }).subscribe({
+    this.auth.register({ name, email, password }).subscribe({
       next: () => this.router.navigate(['/login']),
-      error: (err: { error: { message: any; }; }) =>
-        alert('Erreur : ' + (err.error?.message || 'Une erreur est survenue')),
+      error: (err: { message: string }) => {
+        this.serverError = err.message || 'Une erreur est survenue';
+      }
     });
   }
 }
