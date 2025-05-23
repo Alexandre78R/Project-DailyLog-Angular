@@ -17,11 +17,11 @@ export const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./features/auth/auth.modules').then(m => m.AuthRoutingModule)
+    redirectTo: 'journal',
+    pathMatch: 'full',
   },
   {
     path: '',
-    redirectTo: 'journal',
-    pathMatch: 'full',
+    loadChildren: () => import('./features/auth/auth.modules').then(m => m.AuthRoutingModule)
   },
 ];
