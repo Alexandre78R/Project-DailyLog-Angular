@@ -62,6 +62,20 @@
       "password": "$argon2id$v=19$m=65536,t=3,p=4$v52ZC0ya1JO2XCVElRAdWw$CyY0UToqkcJIuNNSfaKkdZRB5M8owlmYk6PSuTs52I4",
       "name": "admin",
       "createdAt": "2025-05-22T22:21:26.927Z"
+    },
+    {
+      "id": 10,
+      "email": "trtr@trtr.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$HE9FJJWjcfQF12HxvTdpEw$DeEcOueJDBsh3fNMvhrjxkpj/d18CCBl/F3wR18UzzE",
+      "name": "Alexandre Renard",
+      "createdAt": "2025-05-23T11:32:06.795Z"
+    },
+    {
+      "id": 11,
+      "email": "toto@tovto.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$iLyRLrGmP9anPg9gwqEdGg$osb4mGEna0meJ02PSv8tu5PPQqOW/z0203Sx7Q0MHjA",
+      "name": "Alexandre Renard",
+      "createdAt": "2025-05-23T11:37:51.657Z"
     }
   ],
   "entries": [

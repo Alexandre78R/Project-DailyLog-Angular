@@ -23,6 +23,7 @@ export class RegisterComponent {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+
     });
   }
 
@@ -33,9 +34,10 @@ export class RegisterComponent {
     const { name, email, password } = this.form.value;
 
     this.auth.register({ name, email, password }).subscribe({
-      next: () => this.router.navigate(['/login']),
-      error: (err: { message: string }) => {
-        this.serverError = err.message || 'Une erreur est survenue';
+      next: () => this.router.navigate(['/login']), // garder navigate
+      error: (err: any) => {
+        this.serverError =
+          err.error?.message || err.message || 'Une erreur est survenue';
       }
     });
   }

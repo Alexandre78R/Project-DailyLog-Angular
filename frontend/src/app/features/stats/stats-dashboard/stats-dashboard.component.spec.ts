@@ -8,10 +8,11 @@ describe('StatsDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StatsDashboardComponent]
-    })
-    .compileComponents();
+      imports: [StatsDashboardComponent],
+    }).compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(StatsDashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
