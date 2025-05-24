@@ -5,12 +5,12 @@ import { AuthGuard } from './features/auth/guards/auth.guard';
 export const routes: Routes = [
   {
     path: 'journal',
-    loadComponent: () => import('./features/journal/journal-entry/journal-entry.component').then(m => m.JournalEntryComponent),
+    loadComponent: () => import('./features/journal/journal/journal.component').then(m => m.JournalComponent),
     canActivate: [AuthGuard],
   },
   {
     path: 'history',
-    loadComponent: () => import('./features/history/entry-list/entry-list.component').then(m => m.EntryListComponent),
+    loadComponent: () => import('./features/journal/history/history.component').then(m => m.HistoryComponent),
     canActivate: [AuthGuard],
   },
   {
