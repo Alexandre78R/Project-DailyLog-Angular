@@ -34,7 +34,7 @@ export class RegisterComponent {
     const { name, email, password } = this.form.value;
 
     this.auth.register({ name, email, password }).subscribe({
-      next: () => this.router.navigate(['/login']), // garder navigate
+      next: () => this.router.navigate(['/login']),
       error: (err: any) => {
         this.serverError =
           err.error?.message || err.message || 'Une erreur est survenue';
