@@ -2,80 +2,45 @@
   "users": [
     {
       "id": 1,
-      "email": "alex",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$OujNRCaLFpn5SI+754rmxA$luyKD1e2UDw3dBENq0QjKieMO3GTHZ68JXZwWC5Tpnk",
+      "email": "alex@alex.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$xDPcMZlQmoNd1FS3d/45YQ$G3lnxjCOZ/Gw4/LwQZwNlAqr6ww8IjYxwBTpB4wUXT4",
       "name": "Alexandre",
-      "createdAt": "2025-05-22T22:21:26.850Z"
+      "createdAt": "2025-05-24T14:57:45.282Z"
     },
     {
       "id": 2,
-      "email": "alex@alex.com",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$ITL1MSZ5hRomWIiFJv0bZA$ZO11vrNxJhaNBLP9S/DkYjwr8CdKEmWg+t+kXSv1Sb0",
-      "name": "Alexandre",
-      "createdAt": "2025-05-22T22:21:26.846Z"
+      "email": "toto@toto.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$Rwm3ZTs3ldA/m5ssaKOuRg$5NKydyxeKhEedZ9UT7xoabT8Iqu1fpSekNTbdi0fnnc",
+      "name": "toto",
+      "createdAt": "2025-05-24T14:57:45.277Z"
     },
     {
       "id": 3,
-      "email": "toto",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$l/jZbfRNytbjghaSg5+4XQ$p2CxscOkNbd2OuIeu3bdofu3F5ayGs/h/pBHTvxWmZI",
-      "name": "toto",
-      "createdAt": "2025-05-22T22:21:26.899Z"
+      "email": "tata@tata.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$mX9YeWg+q/to9xQO58QSZQ$97HIX8Z+Ib4VJUFBPLtrFxD6t1rSo11Mtt26q4JXCGA",
+      "name": "tata",
+      "createdAt": "2025-05-24T14:57:45.316Z"
     },
     {
       "id": 4,
-      "email": "toto@toto.com",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$ms3rENM9BQikx0PhXp3LNQ$B9o8a2WP7cvqt7POp4D2g1KSveK2lIZTps1a5ElT+PE",
-      "name": "toto",
-      "createdAt": "2025-05-22T22:21:26.850Z"
+      "email": "tutu@tutu.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$ZhbP5w5RR1B9n9KYSuECIQ$JvQ1wTfE+VZyLxsT5JZxZEP3mgrx5zZ/3DUVVy3nA90",
+      "name": "tutu",
+      "createdAt": "2025-05-24T14:57:45.284Z"
     },
     {
       "id": 5,
-      "email": "tata@tata.com",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$u8slR42wnRdS5WXgjaw+Lw$exFPrcCkesYUPJr2NP4OqIRwLIEumZN+xOdYll5Cik8",
-      "name": "tata",
-      "createdAt": "2025-05-22T22:21:26.848Z"
+      "email": "titi@titi.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$FVXzNiqJdQmW/a2Y/++K7Q$H741nr4QBIesgRdMHmXG+q/xcOLaNgn/QDGq1cMceOI",
+      "name": "titi",
+      "createdAt": "2025-05-24T14:57:45.283Z"
     },
     {
       "id": 6,
-      "email": "tutu@tutu.com",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$w8D9V5Sy061xaURHSMSAeQ$SIr90rWd3HrktnnlMBnzxclXaiVg1nC15p97Z550Nzk",
-      "name": "tutu",
-      "createdAt": "2025-05-22T22:21:26.899Z"
-    },
-    {
-      "id": 7,
-      "email": "titi@titi.com",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$B+iiltEynmmFfqireaz3CA$KQHR3snLaaA5StzCZ9BEOEo1oNL2ErCETNVHoHAzEd4",
-      "name": "titi",
-      "createdAt": "2025-05-22T22:21:26.897Z"
-    },
-    {
-      "id": 8,
-      "email": "tutu",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$j/pc/2IeRFQeX3XNWPSKrg$xN0yZocdcVP6G7SQwDfXKyTm9RHmcJ5AwJ0xb5q6ocY",
-      "name": "tutu",
-      "createdAt": "2025-05-22T22:21:26.899Z"
-    },
-    {
-      "id": 9,
-      "email": "admin",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$v52ZC0ya1JO2XCVElRAdWw$CyY0UToqkcJIuNNSfaKkdZRB5M8owlmYk6PSuTs52I4",
+      "email": "admin@admin.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$7YcADkzAO/YUsnRhtwPHKQ$u2gO9e+Ss34ca0y06GL2RQ4K5t77LEd88TC9cI8Cngc",
       "name": "admin",
-      "createdAt": "2025-05-22T22:21:26.927Z"
-    },
-    {
-      "id": 10,
-      "email": "trtr@trtr.com",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$HE9FJJWjcfQF12HxvTdpEw$DeEcOueJDBsh3fNMvhrjxkpj/d18CCBl/F3wR18UzzE",
-      "name": "Alexandre Renard",
-      "createdAt": "2025-05-23T11:32:06.795Z"
-    },
-    {
-      "id": 11,
-      "email": "toto@tovto.com",
-      "password": "$argon2id$v=19$m=65536,t=3,p=4$iLyRLrGmP9anPg9gwqEdGg$osb4mGEna0meJ02PSv8tu5PPQqOW/z0203Sx7Q0MHjA",
-      "name": "Alexandre Renard",
-      "createdAt": "2025-05-23T11:37:51.657Z"
+      "createdAt": "2025-05-24T14:57:45.319Z"
     }
   ],
   "entries": [
@@ -86,7 +51,7 @@
       "title": "Une journée productive",
       "content": "Aujourd’hui j’ai bien avancé sur mon projet Angular. J’ai terminé l’ajout d’une entrée avec humeur.",
       "mood": "happy",
-      "createdAt": "2025-05-22T22:21:26.927Z"
+      "createdAt": "2025-05-24T14:57:45.319Z"
     },
     {
       "id": 102,
@@ -95,7 +60,7 @@
       "title": "Fatigue et réflexion",
       "content": "J’ai eu un coup de mou...",
       "mood": "sad",
-      "createdAt": "2025-05-22T22:21:26.927Z"
+      "createdAt": "2025-05-24T14:57:45.319Z"
     }
   ],
   "mood_stats": [

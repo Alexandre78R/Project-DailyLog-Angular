@@ -1,2 +1,15 @@
-<p>journal-entry works!</p>
-<app-logout-button *ngIf="isLoggedIn$ | async"></app-logout-button>
+<form [formGroup]="journalForm" (ngSubmit)="onSubmit()">
+  <input formControlName="title" placeholder="Titre" />
+  
+  <textarea formControlName="content" placeholder="Contenu"></textarea>
+  
+  <select formControlName="mood">
+    <option value="happy">😀 Heureux</option>
+    <option value="neutral">😐 Neutre</option>
+    <option value="sad">😔 Triste</option>
+  </select>
+
+  <button type="submit">Ajouter</button>
+</form>
+
+<p>ttt</p>

@@ -1,48 +1,33 @@
 {
   "users": [
     {
-      "email": "alex",
-      "password": "alex",
-      "name": "Alexandre"
-    },
-    {
       "email": "alex@alex.com",
-      "password": "alex",
+      "password": "alexalex",
       "name": "Alexandre"
-    },
-    {
-      "email": "toto",
-      "password": "toto",
-      "name": "toto"
     },
     {
       "email": "toto@toto.com",
-      "password": "toto",
+      "password": "totototo",
       "name": "toto"
     },
     {
       "email": "tata@tata.com",
-      "password": "tata",
+      "password": "tatatata",
       "name": "tata"
     },
     {
       "email": "tutu@tutu.com",
-      "password": "tutu",
+      "password": "tutututu",
       "name": "tutu"
     },
     {
       "email": "titi@titi.com",
-      "password": "titi",
+      "password": "titititi",
       "name": "titi"
     },
     {
-      "email": "tutu",
-      "password": "tutu",
-      "name": "tutu"
-    },
-    {
-      "email": "admin",
-      "password": "admin",
+      "email": "admin@admin.com",
+      "password": "adminadmin",
       "name": "admin"
     }
   ],
