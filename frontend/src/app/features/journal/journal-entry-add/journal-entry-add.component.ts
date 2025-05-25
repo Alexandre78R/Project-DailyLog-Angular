@@ -27,15 +27,9 @@ export class JournalEntryAddComponent {
   onSubmit() {
     if (this.form.invalid) return;
 
-    const moodMap: Record<string, string> = {
-      happy: '😀',
-      neutral: '😐',
-      sad: '😔'
-    };
-
     const entry = {
       ...this.form.value,
-      mood: moodMap[this.form.value.mood],
+      mood: this.form.value.mood,
       date: new Date().toISOString()
     };
 
