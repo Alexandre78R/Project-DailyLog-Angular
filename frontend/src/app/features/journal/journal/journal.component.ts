@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { JournalEntryListComponent } from '../journal-entry-list/journal-entry-list.component';
 
 @Component({
   selector: 'app-journal',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, JournalEntryListComponent],
   templateUrl: './journal.component.html',
-  styleUrl: './journal.component.css'
+  styleUrls: ['./journal.component.css']
 })
-export class JournalComponent {
-
-}
+export class JournalComponent {}

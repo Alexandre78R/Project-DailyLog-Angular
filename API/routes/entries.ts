@@ -48,11 +48,41 @@ router.get("/", (req: Request, res: Response) => {
   res.json(entries);
 });
 
+// GET /entries/user - liste des entrées d'un utilisateur avec option limite
+router.get('/user', authenticateToken, (req: AuthRequest, res: Response): void => {
+  
+  const userId = req.user?.id;
+  const limit = parseInt(req.query.limit as string, 10) || 10;
+  const page = parseInt(req.query.page as string, 10) || 1;
+  const offset = (page - 1) * limit;
+  
+  if (!userId) {
+    res.status(401).json({ message: "Utilisateur non authentifié." });
+    return;
+  }
+  
+  const db = loadDb();
+  
+  const userEntries = db.entries
+  .filter((entry) => entry.userId === userId)
+  .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  
+  const paginatedEntries = userEntries.slice(offset, offset + limit);
+  
+  res.json({
+    entries: paginatedEntries,
+    total: userEntries.length,
+    page,
+    totalPages: Math.ceil(userEntries.length / limit),
+  });
+  
+  return;
+});
+
 // GET /entries/:id - récupérer une entrée par son id
 router.get("/:id", (req: Request, res: Response) => {
   const db = loadDb();
   const entry = db.entries.find((e) => e.id === Number(req.params.id));
   entry ? res.json(entry) : res.sendStatus(404);
 });
-
 export default router;

@@ -22,7 +22,6 @@ export class MoodIndicatorComponent {
 
   get color(): string {
     switch (this.mood) {
-      case 'happy': return 'text-green-500';
       case 'sad': return 'text-blue-500';
       case 'neutral': return 'text-gray-500';
       default: return 'text-yellow-500';

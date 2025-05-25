@@ -1,11 +1,27 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { JournalService } from '../services/journal.service';
+import { NoteCardComponent } from '../../../shared/components/note-card/note-card.component';
+import { MoodIndicatorComponent } from '../../../shared/components/mood-indicator/mood-indicator.component';
 @Component({
   selector: 'app-journal-entry-list',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, NoteCardComponent, MoodIndicatorComponent],
   templateUrl: './journal-entry-list.component.html',
-  styleUrl: './journal-entry-list.component.css'
+  styleUrls: ['./journal-entry-list.component.css']
 })
-export class JournalEntryListComponent {
+export class JournalEntryListComponent implements OnInit {
+  entries: any[] = [];
 
+  constructor(private journalService: JournalService) {}
+
+  ngOnInit(): void {
+    this.journalService.getUserEntries(10, 1).subscribe({
+      next: (data) => {
+        console.log('Données reçues:', data);
+        this.entries = data.entries;  // <-- attention ici !
+      },
+      error: (err) => console.error('Erreur lors du chargement des entrées :', err)
+    });
+  }
 }

@@ -45,6 +45,20 @@
       "title": "Fatigue et réflexion",
       "content": "J’ai eu un coup de mou...",
       "mood": "sad"
+    },
+    {
+      "userId": 2,
+      "date": "2025-05-12",
+      "title": "Fatigue et réflexion",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad"
+    },
+    {
+      "userId": 2,
+      "date": "2025-05-12",
+      "title": "Fatigue et réflexion",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "happy"
     }
   ],
   "mood_stats": [
