@@ -18,8 +18,7 @@ export class JournalEntryListComponent implements OnInit {
   ngOnInit(): void {
     this.journalService.getUserEntries(10, 1).subscribe({
       next: (data) => {
-        console.log('Données reçues:', data);
-        this.entries = data.entries;  // <-- attention ici !
+        this.entries = data.entries; 
       },
       error: (err) => console.error('Erreur lors du chargement des entrées :', err)
     });

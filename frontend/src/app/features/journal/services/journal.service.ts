@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 interface Entry {
   id: number;
@@ -17,7 +18,7 @@ interface Entry {
   providedIn: 'root'
 })
 export class JournalService {
-  private apiUrl = 'http://localhost:3001/api/entries';
+  private apiUrl = `${environment.apiUrl}/entries`;
 
   constructor(private http: HttpClient) {}
 
