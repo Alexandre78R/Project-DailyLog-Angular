@@ -1,1 +1,29 @@
-<p>journal-entry-add works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+  <label>
+    Titre :
+    <input formControlName="title" class="border p-2 rounded w-full" />
+  </label>
+
+  <label>
+    Contenu :
+    <textarea formControlName="content" class="border p-2 rounded w-full h-32"></textarea>
+  </label>
+
+  <label>
+    Humeur :
+    <select formControlName="mood" class="border p-2 rounded">
+      <option value="happy">😀 Heureux</option>
+      <option value="neutral">😐 Neutre</option>
+      <option value="sad">😔 Triste</option>
+    </select>
+  </label>
+
+  <div>
+    <span class="font-semibold">Humeur sélectionnée :</span>
+    <app-mood-indicator [mood]="form.value.mood"></app-mood-indicator>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid" class="bg-blue-500 text-white p-2 rounded">
+    Ajouter
+  </button>
+</form>

@@ -9,6 +9,12 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'journal/add',
+    loadComponent: () =>
+      import('./features/journal/journal-entry-add/journal-entry-add.component').then(m => m.JournalEntryAddComponent),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'history',
     loadComponent: () => import('./features/journal/history/history.component').then(m => m.HistoryComponent),
     canActivate: [AuthGuard],

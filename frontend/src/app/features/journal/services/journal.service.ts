@@ -1,4 +1,3 @@
-// journal.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -27,15 +26,25 @@ export class JournalService {
   }
 
   getUserEntries(limit = 10, page = 1): Observable<{ entries: Entry[]; total: number; page: number; totalPages: number }> {
-  const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
-  return this.http.get<{ entries: Entry[]; total: number; page: number; totalPages: number }>(
-    `${this.apiUrl}/user?limit=${limit}&page=${page}`,
-    {
+    return this.http.get<{ entries: Entry[]; total: number; page: number; totalPages: number }>(
+      `${this.apiUrl}/user?limit=${limit}&page=${page}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+  }
+
+  addEntry(entry: Partial<Entry>): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    return this.http.post(`${this.apiUrl}`, entry, {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    }
-  );
-}
+    });
+  }
 }
