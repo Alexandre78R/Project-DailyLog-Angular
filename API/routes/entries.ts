@@ -85,4 +85,24 @@ router.get("/:id", (req: Request, res: Response) => {
   const entry = db.entries.find((e) => e.id === Number(req.params.id));
   entry ? res.json(entry) : res.sendStatus(404);
 });
+
+// DELETE /entries/:id - supprimer une entrée par son id (authentifié)
+router.delete("/:id", authenticateToken, (req: AuthRequest, res: Response): void => {
+  const userId = req.user?.id;
+  const entryId = Number(req.params.id);
+
+  const db = loadDb();
+  const entryIndex = db.entries.findIndex(e => e.id === entryId && e.userId === userId);
+
+  if (entryIndex === -1) {
+    res.status(404).json({ message: "Entrée non trouvée ou non autorisée." });
+    return;
+  }
+
+  db.entries.splice(entryIndex, 1);
+  saveDb(db);
+
+  res.json({ message: "Entrée supprimée." });
+});
+
 export default router;

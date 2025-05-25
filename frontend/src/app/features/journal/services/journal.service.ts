@@ -47,4 +47,13 @@ export class JournalService {
       }
     });
   }
+
+  deleteEntry(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http.delete(`${this.apiUrl}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
 }

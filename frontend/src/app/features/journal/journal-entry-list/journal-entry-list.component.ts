@@ -23,4 +23,17 @@ export class JournalEntryListComponent implements OnInit {
       error: (err) => console.error('Erreur lors du chargement des entrées :', err)
     });
   }
+
+    onDeleteEntry(id: number) {
+    if (!confirm('Supprimer cette entrée ?')) return;
+
+    this.journalService.deleteEntry(id).subscribe({
+      next: () => {
+        this.entries = this.entries.filter(entry => entry.id !== id);
+      },
+      error: (err) => {
+        console.error('Erreur lors de la suppression :', err);
+      }
+    });
+  }
 }
