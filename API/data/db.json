@@ -88,6 +88,15 @@
       "content": "sss",
       "mood": "😀",
       "createdAt": "2025-05-25T09:58:19.807Z"
+    },
+    {
+      "id": 106,
+      "userId": 2,
+      "date": "2025-05-25T10:24:01.710Z",
+      "title": "sdsqscxsc",
+      "content": "csscscs",
+      "mood": "😔",
+      "createdAt": "2025-05-25T10:24:01.715Z"
     }
   ],
   "mood_stats": [

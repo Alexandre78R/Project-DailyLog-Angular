@@ -4,11 +4,12 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { JournalService } from '../services/journal.service';
 import { Router } from '@angular/router';
 import { MoodIndicatorComponent } from '../../../shared/components/mood-indicator/mood-indicator.component';
+import { BackButtonComponent } from '../../../shared/components/back-button/back-button.component';
 
 @Component({
   selector: 'app-journal-entry-add',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MoodIndicatorComponent],
+  imports: [CommonModule, ReactiveFormsModule, MoodIndicatorComponent, BackButtonComponent ],
   templateUrl: './journal-entry-add.component.html',
   styleUrls: ['./journal-entry-add.component.css']
 })
