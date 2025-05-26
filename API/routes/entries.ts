@@ -105,4 +105,41 @@ router.delete("/:id", authenticateToken, (req: AuthRequest, res: Response): void
   res.json({ message: "Entrée supprimée." });
 });
 
+// PUT /entries/:id - mettre à jour une entrée existante
+router.put("/:id", authenticateToken, (req: AuthRequest, res: Response): void => {
+  const userId = req.user?.id;
+  console.log("userId", userId)
+  const entryId = Number(req.params.id);
+  const { date, title, content, mood } = req.body;
+  const token = req.header('Authorization');
+console.log("Token reçu côté backend :", token);
+
+  if (!userId) {
+    res.status(401).json({ message: "Utilisateur non authentifié." });
+    return;
+  }
+
+  if (!date || !title || !content || !mood) {
+    res.status(400).json({ message: "Champs requis manquants." });
+    return;
+  }
+
+  const db = loadDb();
+  const entry = db.entries.find(e => e.id === entryId && e.userId === userId);
+
+  if (!entry) {
+    res.status(404).json({ message: "Entrée non trouvée ou non autorisée." });
+    return;
+  }
+
+  entry.date = date;
+  entry.title = title;
+  entry.content = content;
+  entry.mood = mood;
+
+  saveDb(db);
+
+  res.json({ message: "Entrée mise à jour.", entry });
+});
+
 export default router;

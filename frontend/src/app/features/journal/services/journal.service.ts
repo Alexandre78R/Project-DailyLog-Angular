@@ -56,4 +56,21 @@ export class JournalService {
       }
     });
   }
+
+  getEntry(id: number) {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+
+  updateEntry(id: number, updatedData: any) {
+    const token = localStorage.getItem('token');
+    return this.http.put(
+      `${this.apiUrl}/${id}`,
+      updatedData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+  }
 }

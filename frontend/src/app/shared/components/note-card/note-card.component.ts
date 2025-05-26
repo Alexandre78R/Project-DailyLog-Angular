@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { MoodIndicatorComponent } from '../mood-indicator/mood-indicator.component';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-note-card',
   standalone: true,
-  imports: [CommonModule, MoodIndicatorComponent, TruncatePipe, ConfirmModalComponent],
+  imports: [CommonModule, MoodIndicatorComponent, TruncatePipe, ConfirmModalComponent, RouterModule],
   templateUrl: './note-card.component.html',
   styleUrls: ['./note-card.component.css'],
 })
