@@ -10,7 +10,7 @@ import { BackButtonComponent } from '../../../shared/components/back-button/back
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, BackButtonComponent],
   templateUrl: './journal-entry-edit.component.html',
-  styleUrl: './journal-entry-edit.component.css',
+  styleUrls: ['./journal-entry-edit.component.css']
 })
 export class JournalEntryEditComponent implements OnInit {
   form!: FormGroup;
@@ -28,19 +28,38 @@ export class JournalEntryEditComponent implements OnInit {
       date: ['', Validators.required],
       title: ['', Validators.required],
       content: ['', Validators.required],
-      mood: ['', Validators.required]
+      mood: ['', Validators.required],
     });
 
-    this.entryId = Number(this.route.snapshot.paramMap.get('id'));
-    this.journalService.getEntry(this.entryId).subscribe(entry => {
-      this.form.patchValue(entry);
+    const idParam = this.route.snapshot.paramMap.get('id');
+    this.entryId = idParam ? Number(idParam) : NaN;
+
+    if (isNaN(this.entryId)) {
+      this.router.navigate(['/journal']);
+      return;
+    }
+
+    this.journalService.getEntry(this.entryId).subscribe({
+      next: (entry) => {
+        if (entry) {
+          this.form.patchValue(entry);
+        } else {
+          this.router.navigate(['/journal']);
+        }
+      },
+      error: () => {
+        this.router.navigate(['/journal']);
+      },
     });
   }
 
   onSubmit(): void {
     if (this.form.valid) {
-      this.journalService.updateEntry(this.entryId, this.form.value).subscribe(() => {
-        this.router.navigate(['/journal']);
+      this.journalService.updateEntry(this.entryId, this.form.value).subscribe({
+        next: () => this.router.navigate(['/journal']),
+        error: (err) => {
+          console.error('Erreur lors de la mise à jour', err);
+        },
       });
     }
   }
