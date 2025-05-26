@@ -1,0 +1,30 @@
+<div class="bg-white rounded-2xl shadow-md p-4 transition hover:shadow-lg relative">
+
+  <a [routerLink]="['/journal/edit', id]" class="text-blue-500 hover:underline absolute top-2 left-2">
+    ✏️
+  </a>
+  
+  <button (click)="showModal = true" class="absolute top-2 right-2 text-red-500 hover:text-red-700 text-lg">
+    ✖️
+  </button>
+
+  <div class="flex justify-between items-start m-4">
+    <div>
+      <h3 class="text-xl font-semibold text-gray-800">{{ title }}</h3>
+      <p class="text-sm text-gray-500">{{ date | date: 'mediumDate' }}</p>
+    </div>
+    <app-mood-indicator [mood]="mood"></app-mood-indicator>
+  </div>
+
+  <p class="mt-2 text-gray-700 text-sm">
+    {{ content | truncate:150 }}
+  </p>
+
+    <app-confirm-modal
+    *ngIf="showModal"
+    title="Supprimer cette entrée ?"
+    message="Cette action est irréversible. Es-tu sûr de vouloir supprimer cette note ?"
+    (confirm)="confirmDelete()"
+    (cancel)="showModal = false"
+  ></app-confirm-modal>
+</div>

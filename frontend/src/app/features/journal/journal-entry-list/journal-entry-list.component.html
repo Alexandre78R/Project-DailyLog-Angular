@@ -1,0 +1,15 @@
+<div *ngIf="entries.length; else noEntry" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <app-note-card
+    *ngFor="let entry of entries"
+    [id]="entry.id"
+    [title]="entry.title"
+    [content]="entry.content"
+    [date]="entry.date"
+    [mood]="entry.mood"
+    (delete)="onDeleteEntry($event)"
+  ></app-note-card>
+  
+</div>
+  <ng-template #noEntry>
+    <p class="text-gray-500 italic text-center">Aucune entrée pour le moment.</p>
+  </ng-template>

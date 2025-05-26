@@ -5,6 +5,8 @@ import { catchError, tap } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
+import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 interface User {
   name: string;
@@ -14,7 +16,8 @@ interface User {
 export class AuthService {
   private http = inject(HttpClient);
   private platformId = inject(PLATFORM_ID);
-  private apiUrl = 'http://localhost:3001/api';
+  private apiUrl = environment.apiUrl;
+  private router = inject(Router);
 
   private _user = new BehaviorSubject<User | null>(null);
   user$ = this._user.asObservable();
@@ -105,6 +108,7 @@ export class AuthService {
     this.loggedIn$.next(false);
     this.token.set(null);
     this._user.next(null);
+    this.router.navigate(['/login']);
   }
 
   setUser(user: User | null) {

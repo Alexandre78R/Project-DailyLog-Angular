@@ -1,16 +1,28 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './features/auth/guards/auth.guard';
+
 // export const routes: Routes = [];
 
 export const routes: Routes = [
   {
     path: 'journal',
-    loadComponent: () => import('./features/journal/journal-entry/journal-entry.component').then(m => m.JournalEntryComponent),
+    loadComponent: () => import('./features/journal/journal/journal.component').then(m => m.JournalComponent),
     canActivate: [AuthGuard],
   },
   {
+    path: 'journal/add',
+    loadComponent: () =>
+      import('./features/journal/journal-entry-add/journal-entry-add.component').then(m => m.JournalEntryAddComponent),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'journal/edit/:id',
+    loadComponent: () =>
+      import('./features/journal/journal-entry-edit/journal-entry-edit.component').then(m => m.JournalEntryEditComponent),
+  },
+  {
     path: 'history',
-    loadComponent: () => import('./features/history/entry-list/entry-list.component').then(m => m.EntryListComponent),
+    loadComponent: () => import('./features/journal/history/history.component').then(m => m.HistoryComponent),
     canActivate: [AuthGuard],
   },
   {

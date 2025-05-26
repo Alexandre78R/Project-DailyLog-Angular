@@ -4,7 +4,7 @@ import { loadDb, saveDb, generateId, User } from "../utils/db";
 import argon2 from "argon2";
 
 const router = Router();
-const SECRET = process.env.JWT_SECRET || "dev-secret";
+const SECRET = process.env.JWT_SECRET || "dev_secret";
 
 router.post("/register", async (req: Request, res: Response) => {
   console.log("req.body", req.body);
