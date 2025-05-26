@@ -1,6 +1,13 @@
-<div class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow">
-  <h2 class="text-2xl font-semibold mb-4">Modifier l'entrée</h2>
+<div class="flex items-center justify-between mb-6">
+  <h1 class="text-3xl font-bold">Modifier une entrée</h1>
 
+  <a
+    routerLink="/journal"
+    class="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition font-medium"
+  >
+<app-back-button label="Retour au journal" [routerLink]="['/journal']"></app-back-button>
+  </a>
+</div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-4">
       <label class="block text-sm font-medium">Date</label>
@@ -30,4 +37,3 @@
       Sauvegarder
     </button>
   </form>
-</div>

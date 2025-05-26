@@ -108,11 +108,8 @@ router.delete("/:id", authenticateToken, (req: AuthRequest, res: Response): void
 // PUT /entries/:id - mettre à jour une entrée existante
 router.put("/:id", authenticateToken, (req: AuthRequest, res: Response): void => {
   const userId = req.user?.id;
-  console.log("userId", userId)
   const entryId = Number(req.params.id);
   const { date, title, content, mood } = req.body;
-  const token = req.header('Authorization');
-console.log("Token reçu côté backend :", token);
 
   if (!userId) {
     res.status(401).json({ message: "Utilisateur non authentifié." });

@@ -68,7 +68,7 @@
       "date": "2025-05-12",
       "title": "xxx",
       "content": "J’ai eu un coup de mou...",
-      "mood": "sad",
+      "mood": "neutral",
       "createdAt": "2025-05-26T14:18:05.731Z"
     },
     {
@@ -77,7 +77,7 @@
       "date": "2025-05-12",
       "title": "Fatigue et réflexion",
       "content": "J’ai eu un coup de mou...",
-      "mood": "happy",
+      "mood": "neutral",
       "createdAt": "2025-05-26T14:18:05.731Z"
     }
   ],
