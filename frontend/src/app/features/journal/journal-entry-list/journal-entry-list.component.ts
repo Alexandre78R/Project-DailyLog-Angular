@@ -22,7 +22,7 @@ export class JournalEntryListComponent implements OnInit {
   }
 
   fetchEntries(page: number = 1): void {
-    this.journalService.getUserEntries(10, page).subscribe({
+    this.journalService.getUserEntries(6, page).subscribe({
       next: (data) => {
         this.entries = data.entries;
         this.currentPage = data.page;
