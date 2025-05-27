@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EntryCardComponent } from './entry-card.component';
+import { ArchiveComponent } from './archive.component';
 
-describe('EntryCardComponent', () => {
-  let component: EntryCardComponent;
-  let fixture: ComponentFixture<EntryCardComponent>;
+describe('HistoryComponent', () => {
+  let component: ArchiveComponent;
+  let fixture: ComponentFixture<ArchiveComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EntryCardComponent]
+      imports: [ArchiveComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EntryCardComponent);
+    fixture = TestBed.createComponent(ArchiveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

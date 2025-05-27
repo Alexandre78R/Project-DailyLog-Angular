@@ -19,4 +19,9 @@ export const journalRoutes: Routes = [
         import('./journal-entry-edit/journal-entry-edit.component').then(m => m.JournalEntryEditComponent),
     canActivate: [AuthGuard]
     },
+    {
+        path: 'archive',
+        loadComponent: () => import('./archive/archive.component').then(m => m.ArchiveComponent),
+        canActivate: [AuthGuard],
+    },
 ];
