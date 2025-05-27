@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArchiveEntryListComponent } from './archive-entry-list.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ArchiveEntryListComponent', () => {
   let component: ArchiveEntryListComponent;
@@ -8,7 +9,7 @@ describe('ArchiveEntryListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ArchiveEntryListComponent]
+      imports: [ArchiveEntryListComponent, HttpClientTestingModule]
     })
     .compileComponents();
 
