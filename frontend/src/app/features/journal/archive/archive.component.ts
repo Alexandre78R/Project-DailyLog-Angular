@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-
+import { ArchiveEntryListComponent } from './archive-entry-list/archive-entry-list.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-archive',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, ArchiveEntryListComponent, RouterModule],
   templateUrl: './archive.component.html',
-  styleUrl: './archive.component.css'
+  styleUrls: ['./archive.component.css']
 })
-export class ArchiveComponent {
 
-}
+export class ArchiveComponent {}

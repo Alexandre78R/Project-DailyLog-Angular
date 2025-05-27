@@ -1,0 +1,88 @@
+<!-- Grille : 2/3 pour les cartes, 1/3 pour les filtres -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+  <div class="lg:col-span-2 flex flex-col gap-4">
+    <div *ngIf="entries.length; else noEntry" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <app-note-card
+        *ngFor="let entry of entries"
+        [id]="entry.id"
+        [title]="entry.title"
+        [content]="entry.content"
+        [date]="entry.date"
+        [mood]="entry.mood"
+      ></app-note-card>
+    </div>
+
+    <div class="flex justify-center pt-6" *ngIf="totalPages > 1">
+      <app-pagination
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        (pageChange)="onPageChange($event)"
+      ></app-pagination>
+    </div>
+  </div>
+
+  <div class="bg-base-200 rounded-xl p-4 space-y-4">
+    <h3 class="text-lg font-semibold">Filtres</h3>
+
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="onFilterChange()"
+      placeholder="Mot-clé..."
+      class="input input-bordered w-full"
+    />
+
+    <div class="flex flex-wrap gap-2">
+      <button
+        class="btn btn-sm"
+        [class.btn-active]="moodFilter === ''"
+        (click)="moodFilter = ''; onFilterChange()"
+      >
+        Tous
+      </button>
+      <button
+        class="btn btn-sm"
+        [class.btn-active]="moodFilter === 'happy'"
+        (click)="moodFilter = 'happy'; onFilterChange()"
+      >
+        <app-mood-indicator mood="happy" />
+      </button>
+      <button
+        class="btn btn-sm"
+        [class.btn-active]="moodFilter === 'sad'"
+        (click)="moodFilter = 'sad'; onFilterChange()"
+      >
+        <app-mood-indicator mood="sad" />
+      </button>
+      <button
+        class="btn btn-sm"
+        [class.btn-active]="moodFilter === 'neutral'"
+        (click)="moodFilter = 'neutral'; onFilterChange()"
+      >
+        <app-mood-indicator mood="neutral" />
+      </button>
+    </div>
+
+    <div class="space-y-2">
+      <input
+        type="date"
+        [(ngModel)]="startDate"
+        (change)="onFilterChange()"
+        class="input input-bordered w-full"
+      />
+      <input
+        type="date"
+        [(ngModel)]="endDate"
+        (change)="onFilterChange()"
+        class="input input-bordered w-full"
+      />
+    </div>
+
+    <button (click)="resetFilters()" class="btn btn-sm btn-outline w-full">Réinitialiser</button>
+  </div>
+</div>
+
+<ng-template #noEntry>
+  <p class="text-gray-500 italic text-center mt-10">Aucune entrée trouvée.</p>
+</ng-template>
