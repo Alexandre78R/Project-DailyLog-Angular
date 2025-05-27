@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -34,6 +34,35 @@ export class JournalService {
         headers: {
           Authorization: `Bearer ${token}`
         }
+      }
+    );
+  }
+
+  getUserEntriesFiltered(options: {
+    page?: number;
+    limit?: number;
+    search?: string;
+    mood?: string;
+    fromDate?: string;
+    toDate?: string;
+  }): Observable<{ entries: Entry[]; total: number; page: number; totalPages: number }> {
+    const token = localStorage.getItem('token');
+
+    let params = new HttpParams();
+    if (options.page) params = params.set('page', options.page.toString());
+    if (options.limit) params = params.set('limit', options.limit.toString());
+    if (options.search) params = params.set('search', options.search);
+    if (options.mood) params = params.set('mood', options.mood);
+    if (options.fromDate) params = params.set('fromDate', options.fromDate);
+    if (options.toDate) params = params.set('toDate', options.toDate);
+
+    return this.http.get<{ entries: Entry[]; total: number; page: number; totalPages: number }>(
+      `${this.apiUrl}/user/archive`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        params
       }
     );
   }

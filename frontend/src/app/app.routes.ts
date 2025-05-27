@@ -6,11 +6,6 @@ import { journalRoutes } from './features/journal/journal.routes';
 
 export const routes: Routes = [
   {
-    path: 'history',
-    loadComponent: () => import('./features/journal/history/history.component').then(m => m.HistoryComponent),
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'stats',
     loadComponent: () => import('./features/stats/stats-dashboard/stats-dashboard.component').then(m => m.StatsDashboardComponent),
     canActivate: [AuthGuard],
