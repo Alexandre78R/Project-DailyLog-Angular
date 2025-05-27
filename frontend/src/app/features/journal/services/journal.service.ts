@@ -38,7 +38,7 @@ export class JournalService {
     );
   }
 
-    getUserEntriesFiltered(options: {
+  getUserEntriesFiltered(options: {
     page?: number;
     limit?: number;
     search?: string;
