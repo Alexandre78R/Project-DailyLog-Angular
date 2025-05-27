@@ -19,6 +19,7 @@ export const routes: Routes = [
     path: 'journal/edit/:id',
     loadComponent: () =>
       import('./features/journal/journal-entry-edit/journal-entry-edit.component').then(m => m.JournalEntryEditComponent),
+    canActivate: [AuthGuard]
   },
   {
     path: 'history',
@@ -30,12 +31,12 @@ export const routes: Routes = [
     loadComponent: () => import('./features/stats/stats-dashboard/stats-dashboard.component').then(m => m.StatsDashboardComponent),
     canActivate: [AuthGuard],
   },
-  ...authRoutes,
   {
     path: '',
     redirectTo: 'journal',
     pathMatch: 'full',
   },
+  ...authRoutes,
   // {
   //   path: '',
   //   loadChildren: () => import('./features/auth/auth.modules').then(m => m.AuthRoutingModule)

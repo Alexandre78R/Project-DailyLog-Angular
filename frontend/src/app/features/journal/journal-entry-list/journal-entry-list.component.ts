@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JournalService } from '../services/journal.service';
 import { NoteCardComponent } from '../../../shared/components/note-card/note-card.component';
-import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-journal-entry-list',
   standalone: true,
-  imports: [CommonModule, NoteCardComponent, RouterModule],
+  imports: [CommonModule, NoteCardComponent],
   templateUrl: './journal-entry-list.component.html',
   styleUrls: ['./journal-entry-list.component.css']
 })
