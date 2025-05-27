@@ -1,0 +1,29 @@
+<nav *ngIf="totalPages > 1" class="flex justify-center items-center gap-2 mt-6">
+  <button
+    class="px-3 py-1 rounded-lg border text-sm font-medium transition-colors
+            bg-white hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+    [disabled]="currentPage === 1"
+    (click)="changePage(currentPage - 1)">
+    ← Préc.
+  </button>
+
+  <ng-container *ngFor="let page of pages">
+    <button
+      class="px-3 py-1 rounded-lg border text-sm font-medium transition-colors"
+      [ngClass]="{
+        'bg-blue-600 text-white font-semibold': page === currentPage,
+        'bg-white hover:bg-gray-100': page !== currentPage
+      }"
+      (click)="changePage(page)">
+      {{ page }}
+    </button>
+  </ng-container>
+
+  <button
+    class="px-3 py-1 rounded-lg border text-sm font-medium transition-colors
+            bg-white hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+    [disabled]="currentPage === totalPages"
+    (click)="changePage(currentPage + 1)">
+    Suiv. →
+  </button>
+</nav>
