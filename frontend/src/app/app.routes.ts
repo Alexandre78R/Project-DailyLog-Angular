@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './features/auth/guards/auth.guard';
-
+import { authRoutes } from './features/auth/auth.routes';
 // export const routes: Routes = [];
 
 export const routes: Routes = [
@@ -30,13 +30,14 @@ export const routes: Routes = [
     loadComponent: () => import('./features/stats/stats-dashboard/stats-dashboard.component').then(m => m.StatsDashboardComponent),
     canActivate: [AuthGuard],
   },
+  ...authRoutes,
   {
     path: '',
     redirectTo: 'journal',
     pathMatch: 'full',
   },
-  {
-    path: '',
-    loadChildren: () => import('./features/auth/auth.modules').then(m => m.AuthRoutingModule)
-  },
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./features/auth/auth.modules').then(m => m.AuthRoutingModule)
+  // },
 ];
