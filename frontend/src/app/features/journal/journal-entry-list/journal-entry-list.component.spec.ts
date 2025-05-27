@@ -71,7 +71,7 @@ describe('JournalEntryListComponent', () => {
 
     component.ngOnInit();
 
-    expect(journalServiceSpy.getUserEntries).toHaveBeenCalledWith(10, 1);
+    expect(journalServiceSpy.getUserEntries).toHaveBeenCalledWith(6, 1);
     expect(component.entries.length).toBe(2);
     expect(component.entries).toEqual(mockEntries);
   });

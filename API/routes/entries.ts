@@ -79,6 +79,60 @@ router.get('/user', authenticateToken, (req: AuthRequest, res: Response): void =
   return;
 });
 
+// GET /entries//user/archive - entrées filtrées par utilisateur
+router.get('/user/archive', authenticateToken, (req: AuthRequest, res: Response): void => {
+  const { page = '1', limit = '10', mood, search, fromDate, toDate } = req.query;
+
+  const userId = req.user?.id;
+
+  if (!userId) {
+    res.status(401).json({ message: "Utilisateur non authentifié." });
+    return;
+  }
+
+  const db = loadDb();
+  let entries = db.entries.filter(e => e.userId === userId);
+
+  // Filtrage par mot-clé (dans le titre ou le contenu)
+  if (search && typeof search === 'string') {
+    const keyword = search.toLowerCase();
+    entries = entries.filter(e =>
+      e.title.toLowerCase().includes(keyword) ||
+      e.content.toLowerCase().includes(keyword)
+    );
+  }
+
+  // Filtrage par humeur
+  if (mood && typeof mood === 'string') {
+    entries = entries.filter(e => e.mood === mood);
+  }
+
+  // Filtrage par plage de dates
+  if (fromDate && typeof fromDate === 'string') {
+    entries = entries.filter(e => new Date(e.date) >= new Date(fromDate));
+  }
+  
+  if (toDate && typeof toDate === 'string') {
+    entries = entries.filter(e => new Date(e.date) <= new Date(toDate));
+  }
+
+  // Tri décroissant
+  entries.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  const pageNum = parseInt(page as string, 10);
+  const limitNum = parseInt(limit as string, 10);
+  const offset = (pageNum - 1) * limitNum;
+
+  const paginatedEntries = entries.slice(offset, offset + limitNum);
+
+  res.json({
+    entries: paginatedEntries,
+    total: entries.length,
+    page: pageNum,
+    totalPages: Math.ceil(entries.length / limitNum),
+  });
+});
+
 // GET /entries/:id - récupérer une entrée par son id
 router.get("/:id", (req: Request, res: Response) => {
   const db = loadDb();
