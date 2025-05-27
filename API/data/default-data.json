@@ -158,17 +158,5 @@
       "content": "J’ai eu un coup de mou...",
       "mood": "sad"
     }
-  ],
-  "mood_stats": [
-    {
-      "userId": 1,
-      "month": "2025-05",
-      "totalEntries": 13,
-      "moods": {
-        "happy": 7,
-        "neutral": 3,
-        "sad": 3
-      }
-    }
   ]
 }

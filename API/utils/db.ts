@@ -21,21 +21,9 @@ export interface Entry {
   createdAt: string;
 }
 
-export interface MoodStats {
-  userId: number;
-  month: string;
-  totalEntries: number;
-  moods: {
-    happy: number;
-    neutral: number;
-    sad: number;
-  };
-}
-
 interface Db {
   users: User[];
   entries: Entry[];
-  mood_stats: MoodStats[];
 }
 
 // ✅ Toujours charger dynamiquement la dernière version

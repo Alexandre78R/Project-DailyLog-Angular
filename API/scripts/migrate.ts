@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import readline from "readline";
 import argon2 from "argon2";
-import { User, Entry, MoodStats, generateId } from "../utils/db";
+import { User, Entry, generateId } from "../utils/db";
 
 // Chemins
 const defaultDataPath = path.join(__dirname, "../data/default-data.json");
@@ -19,18 +19,14 @@ interface RawEntry extends Omit<Entry, "id" | "createdAt"> {
   createdAt?: string;
 }
 
-interface RawMoodStats extends MoodStats {}
-
 interface RawData {
   users: RawUser[];
   entries?: RawEntry[];
-  mood_stats?: RawMoodStats[];
 }
 
 async function prepareDb(): Promise<{
   users: User[];
   entries: Entry[];
-  mood_stats: MoodStats[];
 }> {
   const rawData: RawData = JSON.parse(fs.readFileSync(defaultDataPath, "utf-8"));
 
@@ -54,9 +50,7 @@ async function prepareDb(): Promise<{
     createdAt: entry.createdAt ?? new Date().toISOString(),
   }));
 
-  const mood_stats: MoodStats[] = rawData.mood_stats || [];
-
-  return { users, entries, mood_stats };
+  return { users, entries };
 }
 
 async function confirmAndWrite() {
