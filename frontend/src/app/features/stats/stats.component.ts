@@ -20,7 +20,6 @@ import { CommonModule } from '@angular/common';
       <app-mood-pie-chart [moods]="currentMoods"></app-mood-pie-chart>
     </div>
 
-    <!-- Colonne gauche (affichée en second mais à droite visuellement) -->
     <div class="order-1 lg:order-2">
       <h2 class="text-xl font-semibold mb-2">Évolution journalière</h2>
       <app-mood-line-chart [moodStats]="dailyMoodStats"></app-mood-line-chart>
