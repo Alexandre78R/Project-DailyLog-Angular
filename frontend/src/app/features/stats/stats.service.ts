@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 interface MoodStatsMonth {
@@ -22,7 +22,7 @@ export class StatsService {
 
   constructor(private http: HttpClient) {}
 
-  getMoodStats(userId: number): Observable<MoodStatsResponse> {
+  getMoodStats(): Observable<MoodStatsResponse> {
     const token = localStorage.getItem('token');
     return this.http.get<MoodStatsResponse>(`${this.apiUrl}/mood_stats`,
       {
@@ -30,6 +30,20 @@ export class StatsService {
           Authorization: `Bearer ${token}`
         }
       }
+    );
+  }
+
+  getDailyMoodStats(): Observable<{ date: string; moods: Record<string, number> }[]> {
+    const token = localStorage.getItem('token');
+    return this.http.get<{ userId: number; moodStats: { date: string; moods: Record<string, number> }[] }>(
+      `${this.apiUrl}/mood_stats/daily`, 
+            {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    ).pipe(
+      map(response => response.moodStats)
     );
   }
 }

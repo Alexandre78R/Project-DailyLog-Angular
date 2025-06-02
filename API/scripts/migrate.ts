@@ -4,7 +4,6 @@ import readline from "readline";
 import argon2 from "argon2";
 import { User, Entry, generateId } from "../utils/db";
 
-// Chemins
 const defaultDataPath = path.join(__dirname, "../data/default-data.json");
 const outputPath = path.join(__dirname, "../data/db.json");
 

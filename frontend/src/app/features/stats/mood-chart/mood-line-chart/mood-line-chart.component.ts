@@ -17,7 +17,7 @@ Chart.register(...registerables);
   template: `<canvas #lineCanvas></canvas>`,
 })
 export class MoodLineChartComponent implements AfterViewInit, OnChanges {
-  @Input() moodStats: { month: string; moods: Record<string, number> }[] = [];
+  @Input() moodStats: { date: string; moods: Record<string, number> }[] = [];
   @ViewChild('lineCanvas') lineCanvas!: ElementRef<HTMLCanvasElement>;
 
   private chart: Chart<'line'> | null = null;
@@ -34,14 +34,10 @@ export class MoodLineChartComponent implements AfterViewInit, OnChanges {
 
   private getColor(mood: string): string {
     switch (mood) {
-      case 'happy':
-        return 'green';
-      case 'neutral':
-        return 'gray';
-      case 'sad':
-        return 'red';
-      default:
-        return 'blue';
+      case 'happy': return 'green';
+      case 'neutral': return 'gray';
+      case 'sad': return 'red';
+      default: return 'blue';
     }
   }
 
@@ -50,34 +46,37 @@ export class MoodLineChartComponent implements AfterViewInit, OnChanges {
       return { labels: [], datasets: [] };
     }
 
-    const months = this.moodStats.map((s) => s.month).sort();
-
-    const allMoods = new Set<string>();
-    this.moodStats.forEach((s) =>
-      Object.keys(s.moods).forEach((m) => allMoods.add(m))
+    const sortedStats = [...this.moodStats].sort((a, b) =>
+      a.date.localeCompare(b.date)
     );
 
-    const datasets = Array.from(allMoods).map((mood) => ({
+    const allDates = sortedStats.map((s) => s.date);
+
+    const moodTypes = new Set<string>();
+    sortedStats.forEach((s) =>
+      Object.keys(s.moods).forEach((mood) => moodTypes.add(mood))
+    );
+
+    const datasets = Array.from(moodTypes).map((mood) => ({
       label: mood,
-      data: months.map((month) => {
-        const stat = this.moodStats.find((s) => s.month === month);
-        return stat?.moods[mood] ?? 0;
+      data: allDates.map((date) => {
+        const entry = sortedStats.find((s) => s.date === date);
+        return entry?.moods[mood] ?? 0;
       }),
       fill: false,
       borderColor: this.getColor(mood),
-      tension: 0.1,
       backgroundColor: this.getColor(mood),
+      tension: 0.2,
     }));
 
     return {
-      labels: months,
+      labels: allDates,
       datasets,
     };
   }
 
   private createChart() {
-    if (!this.lineCanvas) return;
-    const ctx = this.lineCanvas.nativeElement.getContext('2d');
+    const ctx = this.lineCanvas?.nativeElement?.getContext('2d');
     if (!ctx) return;
 
     this.chart = new Chart(ctx, {
@@ -85,12 +84,22 @@ export class MoodLineChartComponent implements AfterViewInit, OnChanges {
       data: this.getChartData(),
       options: {
         responsive: true,
-        scales: {
-          x: {},
-          y: { beginAtZero: true },
-        },
         plugins: {
           legend: { position: 'top' },
+          tooltip: { mode: 'index', intersect: false },
+        },
+        scales: {
+          x: {
+            title: { display: true, text: 'Date' },
+            ticks: {
+              autoSkip: true,
+              maxTicksLimit: 14,
+            },
+          },
+          y: {
+            beginAtZero: true,
+            title: { display: true, text: 'Occurrences' },
+          },
         },
       },
     });
