@@ -1,0 +1,255 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "alex@alex.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$1PgxLj0HUnXasSDFVvoFMA$FQpeO7X+d0sYEOccM/AEc8V/YuRH2hHDO5IDBxAFIuY",
+      "name": "Alexandre",
+      "createdAt": "2025-06-05T22:24:38.810Z"
+    },
+    {
+      "id": 2,
+      "email": "toto@toto.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$pwAZPTMYlsSEnfTCSgMeXA$qVjECCLdgzEkZdAo+z4/W5l76JMQ1OXtby1OGoQ0N/s",
+      "name": "toto",
+      "createdAt": "2025-06-05T22:24:38.813Z"
+    },
+    {
+      "id": 3,
+      "email": "tata@tata.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$sqwX72hUVSxfYhOn8sEQog$brHxhSUz6RYLLPuqBcKCZmj4xs56H7oTdVrIcQ14wYc",
+      "name": "tata",
+      "createdAt": "2025-06-05T22:24:38.812Z"
+    },
+    {
+      "id": 4,
+      "email": "tutu@tutu.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$Syox3yO5L6NAtc2fhZq5pg$tlS95KddzYXRKyEq8msm/dzO2qXeZ+7P15DEG4N6RLI",
+      "name": "tutu",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 5,
+      "email": "titi@titi.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$CQMScFfcwbiBaDfNeAti+g$zH2cTZR00tRSvgdU6utZjATYvhx6r1OfC1gJZV08zY8",
+      "name": "titi",
+      "createdAt": "2025-06-05T22:24:38.812Z"
+    },
+    {
+      "id": 6,
+      "email": "admin@admin.com",
+      "password": "$argon2id$v=19$m=65536,t=3,p=4$aMTLYtska4VmL3vgUYF/Pg$ysjM0z1DNtTcCFLvxLr8qrxmenb4eyrwUkeTxvomTII",
+      "name": "admin",
+      "createdAt": "2025-06-05T22:24:38.868Z"
+    }
+  ],
+  "entries": [
+    {
+      "id": 101,
+      "userId": 1,
+      "date": "2025-05-12",
+      "title": "Une journée productive",
+      "content": "Aujourd’hui j’ai bien avancé sur mon projet Angular. J’ai terminé l’ajout d’une entrée avec humeur.",
+      "mood": "happy",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 102,
+      "userId": 1,
+      "date": "2025-05-12",
+      "title": "Fatigue et réflexion",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 103,
+      "userId": 2,
+      "date": "2025-05-12",
+      "title": "Fatigue et réflexion1",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 104,
+      "userId": 2,
+      "date": "2025-05-12",
+      "title": "Fatigue et réflexion2",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "happy",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 105,
+      "userId": 2,
+      "date": "2025-05-12",
+      "title": "Fatigue et réflexio3",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 106,
+      "userId": 2,
+      "date": "2025-05-30",
+      "title": "Fatigue et réflexion4",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 107,
+      "userId": 2,
+      "date": "2025-05-29",
+      "title": "Fatigue et réflexion5",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "happy",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 108,
+      "userId": 2,
+      "date": "2025-05-27",
+      "title": "Fatigue et réflexion6",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "happy",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 109,
+      "userId": 2,
+      "date": "2025-05-25",
+      "title": "Fatigue et réflexion7",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 110,
+      "userId": 2,
+      "date": "2025-05-18",
+      "title": "Fatigue et réflexion8",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "happy",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 111,
+      "userId": 2,
+      "date": "2025-05-15",
+      "title": "Fatigue et réflexion9",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 112,
+      "userId": 2,
+      "date": "2025-05-12",
+      "title": "Fatigue et réflexion10",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 113,
+      "userId": 2,
+      "date": "2025-05-09",
+      "title": "Fatigue et réflexion11",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 114,
+      "userId": 2,
+      "date": "2025-05-10",
+      "title": "Fatigue et réflexion12",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 115,
+      "userId": 2,
+      "date": "2025-05-11",
+      "title": "Fatigue et réflexion15",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "neutral",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 116,
+      "userId": 2,
+      "date": "2025-05-12",
+      "title": "Fatigue et réflexion16",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "neutral",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 117,
+      "userId": 2,
+      "date": "2025-06-04",
+      "title": "Fatigue et réflexion17",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "neutral",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 118,
+      "userId": 2,
+      "date": "2025-06-01",
+      "title": "Fatigue et réflexion18",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "sad",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 119,
+      "userId": 2,
+      "date": "2025-06-02",
+      "title": "Fatigue et réflexion19",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "happy",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 120,
+      "userId": 2,
+      "date": "2025-06-06",
+      "title": "Fatigue et réflexion20",
+      "content": "J’ai eu un coup de mou...",
+      "mood": "happy",
+      "createdAt": "2025-06-05T22:24:38.869Z"
+    },
+    {
+      "id": 121,
+      "userId": 2,
+      "date": "2025-06-05",
+      "title": "scsc",
+      "content": "cscsc",
+      "mood": "neutral",
+      "createdAt": "2025-06-05T22:24:54.315Z"
+    },
+    {
+      "id": 122,
+      "userId": 2,
+      "date": "2025-06-05",
+      "title": "cc",
+      "content": "ccc",
+      "mood": "sad",
+      "createdAt": "2025-06-05T23:29:35.677Z"
+    },
+    {
+      "id": 123,
+      "userId": 2,
+      "date": "2025-06-05",
+      "title": "<w<x",
+      "content": "xwx",
+      "mood": "happy",
+      "createdAt": "2025-06-05T23:29:43.614Z"
+    }
+  ]
+}
