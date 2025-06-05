@@ -10,6 +10,7 @@
     <ng-template #loggedIn>
       <a routerLink="/journal" class="hover:underline">Journal</a>
       <a routerLink="/archive" class="hover:underline">Archive</a>
+      <a routerLink="/stats" class="hover:underline">Stats</a>
       <span class="font-semibold">👤 {{ username }}</span>
       <button (click)="logout()" class="bg-red-500 px-3 py-1 rounded hover:bg-red-600">Déconnexion</button>
     </ng-template>
