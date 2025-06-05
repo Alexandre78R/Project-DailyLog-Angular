@@ -35,7 +35,7 @@ describe('MoodIndicatorComponent', () => {
   });
 
   it('should return "❓" emoji for unknown mood', () => {
-    component.mood = 'angry'; // mood non géré
+    component.mood = 'angry';
     expect(component.emoji).toBe('❓');
   });
 
