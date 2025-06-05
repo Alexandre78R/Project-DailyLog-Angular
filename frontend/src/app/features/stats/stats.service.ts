@@ -22,9 +22,9 @@ export class StatsService {
 
   constructor(private http: HttpClient) {}
 
-  getMoodStats(): Observable<MoodStatsResponse> {
+  getMoodStats(month: string): Observable<MoodStatsResponse> {
     const token = localStorage.getItem('token');
-    return this.http.get<MoodStatsResponse>(`${this.apiUrl}/mood_stats`,
+    return this.http.get<MoodStatsResponse>(`${this.apiUrl}/mood_stats?month=${month}`,
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -33,10 +33,10 @@ export class StatsService {
     );
   }
 
-  getDailyMoodStats(): Observable<{ date: string; moods: Record<string, number> }[]> {
+  getDailyMoodStats(month: string): Observable<{ date: string; moods: Record<string, number> }[]> {
     const token = localStorage.getItem('token');
     return this.http.get<{ userId: number; moodStats: { date: string; moods: Record<string, number> }[] }>(
-      `${this.apiUrl}/mood_stats/daily`, 
+      `${this.apiUrl}/mood_stats/daily?month=${month}`, 
             {
         headers: {
           Authorization: `Bearer ${token}`
