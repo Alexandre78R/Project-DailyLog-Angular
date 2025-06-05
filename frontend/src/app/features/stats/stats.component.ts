@@ -9,12 +9,23 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [MoodPieChartComponent, MoodLineChartComponent, CommonModule],
   template: `
-  <section class="flex items-center justify-between mb-6">
+  <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6 gap-4">
     <h1 class="text-3xl font-bold">Statistiques d'humeur</h1>
-  </section>
+
+    <div>
+      <label for="monthPicker" class="mr-2 font-medium">Choisir un mois :</label>
+      <input
+        id="monthPicker"
+        type="month"
+        class="border rounded px-3 py-1"
+        [value]="currentMonth"
+        (change)="handleMonthChange($event)")
+      />
+    </div>
+  </div>
 
   <div *ngIf="moodStats?.length && dailyMoodStats?.length" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-    <!-- Colonne droite (affichée en premier visuellement grâce à row-reverse) -->
+
     <div class="order-2 lg:order-1">
       <h2 class="text-xl font-semibold mb-2">Résumé du mois : {{ currentMonth }}</h2>
       <app-mood-pie-chart [moods]="currentMoods"></app-mood-pie-chart>
@@ -31,9 +42,12 @@ import { CommonModule } from '@angular/common';
   </div>
   `
 })
+
 export class StatsComponent implements OnInit {
   moodStats: { month: string; moods: Record<string, number>; totalEntries: number }[] = [];
   dailyMoodStats: { date: string; moods: Record<string, number> }[] = [];
+  allDailyMoodStats: { date: string; moods: Record<string, number> }[] = [];
+
   currentMonth = '';
   currentMoods: Record<string, number> = {};
 
@@ -49,7 +63,25 @@ export class StatsComponent implements OnInit {
     });
 
     this.statsService.getDailyMoodStats().subscribe(res => {
-      this.dailyMoodStats = res;
+      this.allDailyMoodStats = res;
+      this.filterDailyStatsByMonth(this.currentMonth);
     });
+  }
+
+  onMonthChange(month: string) {
+    this.currentMonth = month;
+    const stat = this.moodStats.find(m => m.month === month);
+    this.currentMoods = stat?.moods ?? {};
+    this.filterDailyStatsByMonth(month);
+  }
+
+  private filterDailyStatsByMonth(month: string) {
+    this.dailyMoodStats = this.allDailyMoodStats.filter(entry => entry.date.startsWith(month));
+  }
+
+  handleMonthChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const month = target.value;
+    this.onMonthChange(month);
   }
 }
