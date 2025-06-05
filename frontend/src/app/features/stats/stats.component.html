@@ -1,0 +1,30 @@
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6 gap-4">
+<h1 class="text-3xl font-bold">Statistiques d'humeur</h1>
+
+<div>
+    <label for="monthPicker" class="mr-2 font-medium">Choisir un mois :</label>
+    <input
+    id="monthPicker"
+    type="month"
+    class="border rounded px-3 py-1"
+    [value]="currentMonth"
+    (change)="handleMonthChange($event)"
+    />
+</div>
+</div>
+
+<div *ngIf="moodStats && currentMoods && dailyMoodStats.length" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="order-2 lg:order-1">
+    <h2 class="text-xl font-semibold mb-2">Résumé du mois : {{ currentMonth }}</h2>
+    <app-mood-pie-chart [moods]="currentMoods"></app-mood-pie-chart>
+</div>
+
+<div class="order-1 lg:order-2">
+    <h2 class="text-xl font-semibold mb-2">Évolution journalière</h2>
+    <app-mood-line-chart [moodStats]="dailyMoodStats"></app-mood-line-chart>
+</div>
+</div>
+
+<div *ngIf="!dailyMoodStats.length || !currentMoods" class="text-center mt-10">
+<p class="text-gray-500">Aucune donnée disponible</p>
+</div>
