@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
         type="month"
         class="border rounded px-3 py-1"
         [value]="currentMonth"
-        (change)="handleMonthChange($event)")
+        (change)="handleMonthChange($event)"
       />
     </div>
   </div>
