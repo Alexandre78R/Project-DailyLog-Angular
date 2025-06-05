@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { JournalService } from '../services/journal.service';
 import { NoteCardComponent } from '../../../shared/components/note-card/note-card.component';
 import { PaginationComponent } from '../../../shared/components/pagination/pagination.component';
+
 @Component({
   selector: 'app-journal-entry-list',
   standalone: true,

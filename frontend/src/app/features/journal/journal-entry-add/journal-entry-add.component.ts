@@ -30,7 +30,7 @@ export class JournalEntryAddComponent {
     const entry = {
       ...this.form.value,
       mood: this.form.value.mood,
-      date: new Date().toISOString()
+      date: new Date().toISOString().slice(0, 10),
     };
 
     this.journalService.addEntry(entry).subscribe({

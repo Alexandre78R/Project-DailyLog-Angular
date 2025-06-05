@@ -7,6 +7,7 @@ const router = Router();
 // POST /entries - création d'une nouvelle entrée
 router.post("/", authenticateToken, (req: AuthRequest, res: Response, next: NextFunction): void => {
   const { date, title, content, mood } = req.body;
+  console.log(req.body)
   const userId = req.user?.id;
 
   if (!userId) {
