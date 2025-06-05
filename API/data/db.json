@@ -68,7 +68,7 @@
       "date": "2025-05-12",
       "title": "Fatigue et réflexion1",
       "content": "J’ai eu un coup de mou...",
-      "mood": "sad",
+      "mood": "happy",
       "createdAt": "2025-06-05T15:01:54.434Z"
     },
     {
@@ -77,7 +77,7 @@
       "date": "2025-05-12",
       "title": "Fatigue et réflexion2",
       "content": "J’ai eu un coup de mou...",
-      "mood": "happy",
+      "mood": "neutral",
       "createdAt": "2025-06-05T15:01:54.434Z"
     },
     {
@@ -223,6 +223,15 @@
       "content": "J’ai eu un coup de mou...",
       "mood": "happy",
       "createdAt": "2025-06-05T15:01:54.434Z"
+    },
+    {
+      "id": 121,
+      "userId": 2,
+      "date": "2025-06-05T15:12:29.249Z",
+      "title": "gt",
+      "content": "tt",
+      "mood": "neutral",
+      "createdAt": "2025-06-05T15:12:29.263Z"
     }
   ]
 }
