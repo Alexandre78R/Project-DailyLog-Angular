@@ -2,10 +2,10 @@ import fs from "fs";
 import path from "path";
 import readline from "readline";
 import argon2 from "argon2";
-import { User, Entry, generateId } from "../utils/db";
+import { PrismaClient } from "@prisma/client";
 
+const prisma = new PrismaClient();
 const defaultDataPath = path.join(__dirname, "../data/default-data.json");
-const outputPath = path.join(__dirname, "../data/db.json");
 
 interface RawUser {
   email: string;
@@ -13,8 +13,12 @@ interface RawUser {
   name: string;
 }
 
-interface RawEntry extends Omit<Entry, "id" | "createdAt"> {
-  id?: number;
+interface RawEntry {
+  userId: number;
+  date: string;
+  title: string;
+  content: string;
+  mood: "happy" | "neutral" | "sad";
   createdAt?: string;
 }
 
@@ -23,59 +27,66 @@ interface RawData {
   entries?: RawEntry[];
 }
 
-async function prepareDb(): Promise<{
-  users: User[];
-  entries: Entry[];
-}> {
+async function seedPrisma() {
   const rawData: RawData = JSON.parse(fs.readFileSync(defaultDataPath, "utf-8"));
 
-  const users: User[] = await Promise.all(
-    rawData.users.map(async (user, index) => ({
-      id: index + 1,
-      email: user.email,
-      password: await argon2.hash(user.password),
-      name: user.name,
-      createdAt: new Date().toISOString(),
-    }))
-  );
+  console.log("🚀 Début du seed dans la base Prisma...");
 
-  const entries: Entry[] = (rawData.entries || []).map((entry, index) => ({
-    id: entry.id ?? index + 101,
-    userId: entry.userId,
-    date: entry.date,
-    title: entry.title,
-    content: entry.content,
-    mood: entry.mood,
-    createdAt: entry.createdAt ?? new Date().toISOString(),
-  }));
+  // Nettoyage (optionnel selon tes besoins)
+  await prisma.entry.deleteMany();
+  await prisma.user.deleteMany();
 
-  return { users, entries };
-}
+  // Crée les utilisateurs
+  for (const user of rawData.users) {
+    const hashedPassword = await argon2.hash(user.password);
 
-async function confirmAndWrite() {
-  const newDb = await prepareDb();
-  fs.writeFileSync(outputPath, JSON.stringify(newDb, null, 2));
-  console.log("✅ db.json généré avec succès !");
+    await prisma.user.create({
+      data: {
+        email: user.email,
+        password: hashedPassword,
+        name: user.name,
+      },
+    });
+  }
+
+  // Récupère les utilisateurs avec leurs ID générés
+  const usersInDb = await prisma.user.findMany();
+
+  // Crée les entrées
+  for (const entry of rawData.entries || []) {
+    const userExists = usersInDb.find((u) => u.id === entry.userId);
+    if (!userExists) continue;
+
+    await prisma.entry.create({
+      data: {
+        userId: entry.userId,
+        date: new Date(entry.date),
+        title: entry.title,
+        content: entry.content,
+        mood: entry.mood,
+        createdAt: entry.createdAt ? new Date(entry.createdAt) : undefined,
+      },
+    });
+  }
+
+  console.log("✅ Données insérées dans Prisma avec succès !");
+  await prisma.$disconnect();
 }
 
 async function main() {
-  if (fs.existsSync(outputPath)) {
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
 
-    rl.question("⚠️ db.json existe déjà. Réinitialiser ? (yes/no) ", async (answer) => {
-      if (answer.toLowerCase() === "yes") {
-        await confirmAndWrite();
-      } else {
-        console.log("❌ Opération annulée.");
-      }
-      rl.close();
-    });
-  } else {
-    await confirmAndWrite();
-  }
+  rl.question("⚠️ Ceci va réinitialiser la base de données. Continuer ? (yes/no) ", async (answer) => {
+    if (answer.toLowerCase() === "yes") {
+      await seedPrisma();
+    } else {
+      console.log("❌ Opération annulée.");
+    }
+    rl.close();
+  });
 }
 
 main();
