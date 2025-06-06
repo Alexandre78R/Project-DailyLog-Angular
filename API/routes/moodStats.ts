@@ -1,16 +1,17 @@
-import { Router, Request, Response } from "express";
-import { loadDb } from "../utils/db";
+import { Router, Response } from "express";
 import { authenticateToken, AuthRequest } from "../middleware/authenticate";
+import { PrismaClient } from "@prisma/client";
 
 import express from "express";
 const router: express.Router = Router();
+const prisma = new PrismaClient();
 
 // Fonction pour regrouper les entrées par mois et humeur
 function groupEntriesByMonth(entries: any[]) {
   const statsMap: Record<string, { totalEntries: number; moods: Record<string, number> }> = {};
 
   entries.forEach(entry => {
-    const month = entry.date.slice(0, 7); // YYYY-MM à partir de `date`
+    const month = entry.date.slice(0, 7); // YYYY-MM
     if (!statsMap[month]) {
       statsMap[month] = { totalEntries: 0, moods: {} };
     }
@@ -47,45 +48,69 @@ function groupEntriesByDay(entries: any[]) {
 }
 
 // GET /api/mood_stats?month=YYYY-MM
-router.get("/", authenticateToken, (req: AuthRequest, res: Response): void => {
-  const db = loadDb();
+router.get("/", authenticateToken, async (req: AuthRequest, res: Response): Promise<void> => {
   const userId = Number(req.user?.id);
   const month = req.query.month as string;
 
-  const userEntries = db.entries.filter(entry => entry.userId === userId);
+  try {
+    const userEntries = await prisma.entry.findMany({
+      where: { userId },
+      select: { date: true, mood: true }
+    });
 
-  if (!userEntries.length) {
-    res.status(404).json({ message: "No entries found for this user." });
-    return;
+    if (!userEntries.length) {
+      res.status(404).json({ message: "No entries found for this user." });
+      return;
+    }
+
+    const transformed = userEntries.map(entry => ({
+      date: new Date(entry.date).toISOString(),
+      mood: entry.mood,
+    }));
+
+    const filteredEntries = month
+      ? transformed.filter(entry => entry.date.slice(0, 7) === month)
+      : transformed;
+
+    const moodStats = groupEntriesByMonth(filteredEntries);
+    res.json({ userId, moodStats });
+  } catch (error) {
+    console.error("Error fetching mood stats:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
-
-  const filteredEntries = month
-    ? userEntries.filter(entry => entry.date.slice(0, 7) === month)
-    : userEntries;
-
-  const moodStats = groupEntriesByMonth(filteredEntries);
-  res.json({ userId, moodStats });
 });
 
 // GET /api/mood_stats/daily?month=YYYY-MM
-router.get("/daily", authenticateToken, (req: AuthRequest, res: Response): void => {
-  const db = loadDb();
+router.get("/daily", authenticateToken, async (req: AuthRequest, res: Response): Promise<void> => {
   const userId = Number(req.user?.id);
   const month = req.query.month as string;
 
-  const userEntries = db.entries.filter(entry => entry.userId === userId);
+  try {
+    const userEntries = await prisma.entry.findMany({
+      where: { userId },
+      select: { date: true, mood: true }
+    });
 
-  if (!userEntries.length) {
-    res.status(404).json({ message: "No entries found for this user." });
-    return;
+    if (!userEntries.length) {
+      res.status(404).json({ message: "No entries found for this user." });
+      return;
+    }
+
+    const transformed = userEntries.map(entry => ({
+      date: new Date(entry.date).toISOString(),
+      mood: entry.mood,
+    }));
+
+    const filteredEntries = month
+      ? transformed.filter(entry => entry.date.slice(0, 7) === month)
+      : transformed;
+
+    const moodStats = groupEntriesByDay(filteredEntries);
+    res.json({ userId, moodStats });
+  } catch (error) {
+    console.error("Error fetching mood stats (daily):", error);
+    res.status(500).json({ message: "Internal server error" });
   }
-
-  const filteredEntries = month
-    ? userEntries.filter(entry => entry.date.slice(0, 7) === month)
-    : userEntries;
-
-  const moodStats = groupEntriesByDay(filteredEntries);
-  res.json({ userId, moodStats });
 });
 
 export default router;
