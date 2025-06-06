@@ -34,7 +34,7 @@ model Entry {
   userId    Int
   date      String
   title     String
-  content   String
+  content   String   @db.Text  
   mood      Mood
   createdAt DateTime @default(now())
 }
