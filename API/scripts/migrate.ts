@@ -60,7 +60,7 @@ async function seedPrisma() {
     await prisma.entry.create({
       data: {
         userId: entry.userId,
-        date: new Date(entry.date),
+        date: entry.date,
         title: entry.title,
         content: entry.content,
         mood: entry.mood,
