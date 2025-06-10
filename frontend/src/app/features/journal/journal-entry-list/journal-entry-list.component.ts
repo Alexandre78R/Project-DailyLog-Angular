@@ -9,7 +9,6 @@ import { PaginationComponent } from '../../../shared/components/pagination/pagin
   standalone: true,
   imports: [CommonModule, NoteCardComponent, PaginationComponent],
   templateUrl: './journal-entry-list.component.html',
-  styleUrls: ['./journal-entry-list.component.css']
 })
 export class JournalEntryListComponent implements OnInit {
   entries: any[] = [];

@@ -8,6 +8,5 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, JournalEntryListComponent, RouterModule],
   templateUrl: './journal.component.html',
-  styleUrls: ['./journal.component.css']
 })
 export class JournalComponent {}

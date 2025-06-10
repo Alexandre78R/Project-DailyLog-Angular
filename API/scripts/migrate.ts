@@ -36,6 +36,11 @@ async function seedPrisma() {
   await prisma.entry.deleteMany();
   await prisma.user.deleteMany();
 
+  console.log("Resetting auto-increments...");
+  await prisma.$executeRawUnsafe('ALTER TABLE `entry` AUTO_INCREMENT = 1;');
+  await prisma.$executeRawUnsafe('ALTER TABLE `user` AUTO_INCREMENT = 1;'); 
+  console.log("Auto-increments reset.");
+
   // Crée les utilisateurs
   for (const user of rawData.users) {
     const hashedPassword = await argon2.hash(user.password);

@@ -10,7 +10,6 @@ import { BackButtonComponent } from '../../../shared/components/back-button/back
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, BackButtonComponent],
   templateUrl: './journal-entry-edit.component.html',
-  styleUrls: ['./journal-entry-edit.component.css']
 })
 export class JournalEntryEditComponent implements OnInit {
   form!: FormGroup;

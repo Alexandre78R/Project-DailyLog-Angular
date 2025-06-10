@@ -29,6 +29,11 @@
       "email": "admin@admin.com",
       "password": "adminadmin",
       "name": "admin"
+    },
+    {
+      "email": "dsfsdfs@admin.com",
+      "password": "dssddsdssddss",
+      "name": "admin"
     }
   ],
   "entries": [

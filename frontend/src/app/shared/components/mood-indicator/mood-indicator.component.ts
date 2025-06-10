@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-mood-indicator',
   imports: [CommonModule],
   templateUrl: './mood-indicator.component.html',
-  styleUrls: ['./mood-indicator.component.css']
 })
 export class MoodIndicatorComponent {
   @Input() mood!: string;

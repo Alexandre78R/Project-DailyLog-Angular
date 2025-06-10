@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, ArchiveEntryListComponent, RouterModule],
   templateUrl: './archive.component.html',
-  styleUrls: ['./archive.component.css']
 })
 
 export class ArchiveComponent {}

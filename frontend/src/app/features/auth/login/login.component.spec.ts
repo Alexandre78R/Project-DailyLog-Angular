@@ -19,7 +19,6 @@ describe('LoginComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, LoginComponent, HttpClientTestingModule],
-      // declarations: [LoginComponent],
       providers: [
         { provide: AuthService, useValue: authSpy },
         { provide: Router, useValue: routerSpyObj },
@@ -40,14 +39,14 @@ describe('LoginComponent', () => {
   });
 
   it('should not call auth.login if form is invalid', () => {
-    component.form.setValue({ email: '', password: '' }); // form invalid
+    component.form.setValue({ email: '', password: '' });
     component.submit();
     expect(authServiceSpy.login).not.toHaveBeenCalled();
   });
 
   it('should call auth.login and navigate on success', () => {
     component.form.setValue({ email: 'test@test.com', password: 'password' });
-    authServiceSpy.login.and.returnValue(of({})); // mock success response
+    authServiceSpy.login.and.returnValue(of({}));
 
     component.submit();
 

@@ -11,7 +11,6 @@ import { BackButtonComponent } from '../../../shared/components/back-button/back
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MoodIndicatorComponent, BackButtonComponent ],
   templateUrl: './journal-entry-add.component.html',
-  styleUrls: ['./journal-entry-add.component.css']
 })
 export class JournalEntryAddComponent {
   private fb = inject(FormBuilder);

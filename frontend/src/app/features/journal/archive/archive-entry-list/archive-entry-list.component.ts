@@ -25,7 +25,6 @@ interface JournalEntry {
     PaginationComponent
   ],
   templateUrl: './archive-entry-list.component.html',
-  styleUrls: ['./archive-entry-list.component.css']
 })
 export class ArchiveEntryListComponent implements OnInit {
   entries: JournalEntry[] = [];
