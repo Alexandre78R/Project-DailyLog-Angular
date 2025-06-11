@@ -109,8 +109,10 @@ router.get('/user/archive', authenticateToken, async (req: AuthRequest, res: Res
 
     if (search && typeof search === "string") {
       filters.OR = [
-        { title: { contains: search, mode: "insensitive" } },
-        { content: { contains: search, mode: "insensitive" } },
+        // { title: { contains: search, mode: "insensitive" } },
+        // { content: { contains: search, mode: "insensitive" } },
+        { title: { contains: search } },
+        { content: { contains: search } },
       ];
     }
 
